@@ -49,6 +49,7 @@ export default function Home() {
         };
     }, []);
 
+
     return (
         <div className="relative">
             {/* Navbar ยาวเต็มหน้าจอ */}
@@ -138,11 +139,22 @@ export default function Home() {
                     </div>
                 </div>
             </nav>
-
-            {/* เพิ่มพื้นที่ของเนื้อหาภายในกล่องแยกต่างหาก */}
-            <div className="container mx-auto px-4 mt-4 p-4 bg-gray-100 border rounded">
-                Hello
+            <div className="relative w-full h-[300px]">
+                <Image
+                    src="/bg.svg"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="cover"
+                />
+                <div className="absolute inset-0 flex justify-center items-center">
+                    <div className="container mx-auto px-4">
+                        <div className="bg-white p-10 rounded shadow-md">
+                                
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     );
 }
