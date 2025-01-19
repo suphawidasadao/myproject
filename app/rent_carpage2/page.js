@@ -96,8 +96,8 @@ export default function Home() {
                 </div>
             </nav>
 
-             {/* Main Content */}
-             <div className="container mx-auto px-4 mt-4 flex gap-4">
+            {/* Main Content */}
+            <div className="container mx-auto px-4 mt-4 flex gap-4">
                 {/* Summary Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
                     <div className="flex items-center mb-4">
@@ -130,62 +130,59 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Form Section */}
+                {/* Payment Summary Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
-                    <h3 className="text-lg font-bold mb-4">กรอกข้อมูล</h3>
-
-                    {/* ข้อความข้อมูลผู้ขับขี่ */}
-                    <div className="mb-4 text-sm text-gray-600">
-                        <p>ข้อมูลผู้ขับขี่ (ชื่อผู้ขับขี่ต้องเป็นชื่อเดียวกับผู้ที่มารับรถ)</p>
+                    <h3 className="text-lg font-bold mb-4">สรุปรายการชำระทั้งหมด</h3>
+                    
+                    {/* ชำระในวันรับรถ */}
+                    <div className="mb-4">
+                        <h4 className="font-bold mb-2">ชำระในวันรับรถ</h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                            <li className="flex justify-between">
+                                <span>ค่าเช่า 2 วัน</span>
+                                <span>฿2,398</span>
+                            </li>
+                            <li className="flex justify-between">
+                                <span>ค่ารถ - ค่าส่ง</span>
+                                <span>฿400</span>
+                            </li>
+                        </ul>
+                        <div className="flex justify-between font-bold border-t pt-2 mt-2">
+                            <span>Total</span>
+                            <span>฿2,798</span>
+                        </div>
                     </div>
-
-                    <form className="flex flex-col gap-4">
-                        <input
-                            type="text"
-                            placeholder="ชื่อจริง"
-                            className="p-2 border rounded-md"
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="นามสกุล"
-                            className="p-2 border rounded-md"
-                            required
-                        />
-                        <input
-                            type="email"
-                            placeholder="อีเมล (สำหรับติดต่อสอบถาม)"
-                            className="p-2 border rounded-md"
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="เบอร์โทรศัพท์"
-                            className="p-2 border rounded-md"
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="การใช้งานของคุณ"
-                            className="p-2 border rounded-md"
-                        />
-                        <input
-                            type="text"
-                            placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)"
-                            className="p-2 border rounded-md"
-                        />
-                        <label className="flex items-center gap-2 text-sm">
-                            <input type="checkbox" className="w-4 h-4" />
-                            ติดต่อเรื่องรถจากต่างประเทศ
-                        </label>
-                        
-                        <button
-                            type="submit"
-                            className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
-                        >
-                            ยืนยันข้อมูล
-                        </button>
-                    </form>
+                    
+                    {/* ค่ามัดจำ */}
+                    <div className="mb-4">
+                        <h4 className="font-bold mb-2">ค่ามัดจำ</h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                            <li>
+                                <span>ได้รับคืนในวันคืนรถตามเงื่อนไขของบริษัทกำหนด</span>
+                            </li>
+                        </ul>
+                        <div className="flex justify-between font-bold border-t pt-2 mt-2">
+                            <span>Total</span>
+                            <span>฿3,000</span>
+                        </div>
+                    </div>
+                    
+                    {/* ที่ต้องชำระตอนนี้ */}
+                    <div className="mb-4">
+                        <h4 className="font-bold mb-2">ที่ต้องชำระตอนนี้</h4>
+                        <div className="flex justify-between font-bold text-green-500">
+                            <span>ชำระตอนนี้</span>
+                            <span>฿0</span>
+                        </div>
+                    </div>
+                    
+                    {/* Confirm Button */}
+                    <button
+                        type="button"
+                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+                    >
+                        ยืนยันข้อมูลเพื่อชำระรถ
+                    </button>
                 </div>
             </div>
         </div>
