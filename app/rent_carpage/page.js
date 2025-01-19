@@ -96,27 +96,49 @@ export default function Home() {
                 </div>
             </nav>
 
-            {/* Main Content */}
-            <div className="container mx-auto px-4 mt-4 flex gap-4">
+             {/* Main Content */}
+             <div className="container mx-auto px-4 mt-4 flex gap-4">
                 {/* Summary Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
-                    <img
-                        src="https://phetyont.com/wp-content/uploads/2024/09/Toyota-Yaris-895.jpg"
-                        alt="Car"
-                        className="w-full rounded-md mb-4"
-                    />
-                    <h3 className="text-lg font-bold">Toyota Yaris 2023</h3>
-                    <p className="text-sm text-gray-600">
-                        รับรถ: สนามบินดอนเมือง<br />
-                        09/01/2025 10:00 น.<br />
-                        คืนรถ: สนามบินดอนเมือง<br />
-                        11/01/2025 10:00 น.
-                    </p>
+                    <div className="flex items-center mb-4">
+                        <img
+                            src="https://phetyont.com/wp-content/uploads/2024/09/Toyota-Yaris-895.jpg"
+                            alt="Car"
+                            className="w-1/3 rounded-md"
+                        />
+                        <div className="ml-4">
+                            <h3 className="text-lg font-bold">Toyota Yaris 2023</h3>
+                            <p className="text-sm text-gray-600">เกียร์ออโต้</p>
+                            <p className="text-sm text-gray-600">
+                                รับรถ: สนามบินดอนเมือง<br />
+                                09/01/2025 10:00 น.<br />
+                                คืนรถ: สนามบินดอนเมือง<br />
+                                11/01/2025 10:00 น.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="text-sm text-gray-600">
+                        <p className="mb-2">ร้านรถเช่า</p>
+                        <div className="flex items-center gap-2">
+                            <img
+                                src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Flogo%2F45c687d4-adab-431b-bf64-2fd347be24bb%2Fmedium.png&w=1080&q=100"
+                                alt="RN Rent A Car"
+                                className="w-25 h-25"
+                            />
+                            <span>Local<br />RN Rent A Car<br />กรุงเทพมหานคร</span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Form Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
                     <h3 className="text-lg font-bold mb-4">กรอกข้อมูล</h3>
+
+                    {/* ข้อความข้อมูลผู้ขับขี่ */}
+                    <div className="mb-4 text-sm text-gray-600">
+                        <p>ข้อมูลผู้ขับขี่ (ชื่อผู้ขับขี่ต้องเป็นชื่อเดียวกับผู้ที่มารับรถ)</p>
+                    </div>
+
                     <form className="flex flex-col gap-4">
                         <input
                             type="text"
@@ -156,6 +178,7 @@ export default function Home() {
                             <input type="checkbox" className="w-4 h-4" />
                             ติดต่อเรื่องรถจากต่างประเทศ
                         </label>
+                        
                         <button
                             type="submit"
                             className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
