@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Home() {
     const [isHelpDropdownOpen, setIsHelpDropdownOpen] = useState(false);
@@ -151,6 +151,45 @@ export default function Home() {
         }));
     };
 
+    // State สำหรับวันเวลารับรถและคืนรถ
+    const [pickupDate, setPickupDate] = useState('');
+    const [returnDate, setReturnDate] = useState('');
+
+    // ฟังก์ชันที่จะตั้งค่า default values ของ pickup และ return
+    useEffect(() => {
+        const now = new Date();
+        const defaultPickup = new Date(now.getTime() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
+        const defaultReturn = new Date(now.getTime() + 48 * 60 * 60 * 1000).toISOString().slice(0, 16);
+
+        setPickupDate(defaultPickup);
+        setReturnDate(defaultReturn);
+    }, []);
+
+    // ตรวจสอบและอัปเดตวันที่คืนรถถ้ามีการเปลี่ยนแปลง
+    const handlePickupChange = (e) => {
+        const newPickupDate = new Date(e.target.value);
+        const newReturnDate = new Date(returnDate);
+
+        if (newPickupDate >= newReturnDate) {
+            const adjustedReturnDate = new Date(newPickupDate.getTime() + 24 * 60 * 60 * 1000);
+            setReturnDate(adjustedReturnDate.toISOString().slice(0, 16));
+        }
+        setPickupDate(e.target.value);
+    };
+
+    const handleReturnChange = (e) => {
+        const newPickupDate = new Date(pickupDate);
+        const newReturnDate = new Date(e.target.value);
+
+        if (newReturnDate <= newPickupDate) {
+            alert('วัน-เวลาคืนรถต้องหลังจากวัน-เวลารับรถ');
+            const adjustedReturnDate = new Date(newPickupDate.getTime() + 24 * 60 * 60 * 1000);
+            setReturnDate(adjustedReturnDate.toISOString().slice(0, 16));
+        } else {
+            setReturnDate(e.target.value);
+        }
+    };
+
 
     return (
         <div className="relative">
@@ -251,10 +290,10 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 flex justify-center items-center">
                     <div className="container mx-auto px-4">
-                        <div className="bg-white p-6 rounded shadow-md flex space-x-4">
+                        <div className="bg-white p-4 rounded shadow-md flex space-x-4">
+                            {/* กล่องเลือกจังหวัด */}
                             <div
-                                className={`bg-gray-100 p-2 rounded shadow-md w-[35%] ${isBox1Focused ? "ring-2 ring-blue-500" : ""
-                                    }`}
+                                className={`bg-gray-100 p-2 rounded shadow-md w-[35%] ${isBox1Focused ? "ring-2 ring-blue-500" : ""}`}
                                 onFocus={() => setIsBox1Focused(true)}
                                 onBlur={() => setIsBox1Focused(false)}
                                 tabIndex={-1}
@@ -298,27 +337,56 @@ export default function Home() {
                                 </div>
                             </div>
 
+                            {/* กล่องวันเวลารับคืน */}
                             <div
-                                className={`bg-gray-100 p-2 rounded shadow-md w-[55%] ${isBox2Focused ? "ring-2 ring-blue-500" : ""
-                                    }`}
+                                className={`bg-gray-100 p-2 rounded shadow-md w-[55%] ${isBox2Focused ? "ring-2 ring-blue-500" : ""}`}
                                 onFocus={() => setIsBox2Focused(true)}
                                 onBlur={() => setIsBox2Focused(false)}
                                 tabIndex={-1}
                             >
-                                <h2 className="text-[10px] font-bold">กล่องที่ 2</h2>
-                                <p className="text-[10px]">เนื้อหาภายในกล่องที่ 2</p>
+                                <div className="flex items-center mb-2 space-x-4">
+                                    <div className="flex flex-col w-1/2">
+                                        <label htmlFor="pickup" className="text-[10px] text-gray-600 mb-1">วัน-เวลารับรถ</label>
+                                        <input
+                                            type="datetime-local"
+                                            id="pickup"
+                                            name="pickup"
+                                            className="text-[10px] p-2 border border-gray-300 rounded-md focus:outline-none"
+                                            value={pickupDate}
+                                            onChange={handlePickupChange}
+                                        />
+                                    </div>
+
+                                    <div className="text-2xl text-yellow-500 mx-2">&#8594;</div>
+
+                                    <div className="flex flex-col w-1/2">
+                                        <label htmlFor="return" className="text-[10px] text-gray-600 mb-1">วัน-เวลาคืนรถ</label>
+                                        <input
+                                            type="datetime-local"
+                                            id="return"
+                                            name="return"
+                                            className="text-[10px] p-2 border border-gray-300 rounded-md focus:outline-none"
+                                            value={returnDate}
+                                            onChange={handleReturnChange}
+                                        />
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* ปุ่ม */}
-                            <div className="flex items-start">
-                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-12 rounded text-xs">
-                                    ปุ่ม
+                            {/* ปุ่มค้นหารถเช่า */}
+                            <div className="flex items-center">
+                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-md text-[10px] whitespace-nowrap transition transform duration-300 hover:scale-105">
+                                    ค้นหารถเช่า
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
 
             <div className="container mx-auto px-4 py-6">
                 <h1 className="text-base font-bold text-gray-800 mb-4">
