@@ -33,7 +33,7 @@ export default function Home() {
         <div className="relative">
             {/* Navbar */}
             <nav className="bg-white border-b shadow-md py-1 w-full">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-12">
                     <div className="flex justify-between items-center">
                         <Image
                             src="/Logo.svg"
@@ -115,17 +115,21 @@ export default function Home() {
                     <div> 
                         {/* เส้นขั้นแรก */}
                         <hr className="border-t border-gray-300 my-4 mx-4" />
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="50" className="ml-20 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="50" className="ml-[85.5px]">
                             <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
                         </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="50" className="ml-20 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="50" className="ml-[85.5px]">
                             <path d="M135.2 117.4L109.1 192l293.8 0-26.1-74.6C372.3 104.6 360.2 96 346.6 96L165.4 96c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32l181.2 0c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2l0 144 0 48c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-48L96 400l0 48c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-48L0 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/>
                         </svg>
                           {/* เส้นประแนวตั้ง */}
-                        <div className="border-l border-dashed border-yellow-500 h-12 ml-24 mt-10"></div>
-                        <div className="bg-white border border-yellow-500 p-4 rounded-full shadow-md mt-4 w-[60px] h-[40px] ml-16" />
+                          <div className="border-l border-dashed border-yellow-500 h-12 ml-[95px] mt-10"></div>
+                            <div className="bg-white border border-yellow-500 p-4 rounded-full shadow-md mt-4 w-[60px] h-[40px] ml-16 flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="30">
+                                <path d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"/>
+                            </svg>
+                            </div>
                          {/* เส้นประแนวตั้ง */}
-                         <div className="border-l border-dashed border-yellow-500 h-12 ml-24 mt-4"></div>
+                         <div className="border-l border-dashed border-yellow-500 h-12 ml-[95px] mt-4"></div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="50" className="ml-20">
                             <path d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"/>
                         </svg>
@@ -135,14 +139,13 @@ export default function Home() {
                             <p className="text-xl text-gray-600 ml-56 transform translate-y-[-300px]">
                                 รับรถ <br />
                                 สนามบินดอนเมือง<br />
-                                09/01/2025 .<br />
+                                09/01/2025<br />
                                 10:00 น.<br />
                                 คืนรถ <br />
                                 คืนรถ สนามบินดอนเมือง<br />
                                 11/01/2025 <br />
                                 10:00 น
                             </p>
-
                         {/* เส้นขั้นที่สอง */}
                         <hr className="border-t border-gray-300 my-4 mx-4 transform -translate-y-40" />
                     </div>
@@ -160,7 +163,7 @@ export default function Home() {
                     </div>
                 </div>
                 {/* Form Section */}
-                <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
+                <div className="bg-white p-4 rounded-lg shadow-md w-1/2 h-[500px]">
                     <h3 className="text-lg font-bold mb-4">กรอกข้อมูล</h3>
 
                     {/* ข้อความข้อมูลผู้ขับขี่ */}
@@ -210,23 +213,22 @@ export default function Home() {
                     </form>
                 </div>
             </div>
-            <div className="bg-white border p-4 rounded-md shadow-md mt-4 w-1/2 ml-auto">
-                <p className="text-center text-black font-semibold mb-4">
-                        กรุณาตรวจสอบข้อมูลการเช่าให้ครบถ้วนก่อนการกดยืนยัน
+            <div className="bg-white border p-4 rounded-md shadow-md -mt-96 w-[620px] ml-[730px]">
+                <p className="text-center text-black mb-4">
+                    กรุณาตรวจสอบข้อมูลการเช่าให้ครบถ้วนก่อนการกดยืนยัน
                 </p>
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 w-full">
-                         ยืนยันข้อมูล
+                    className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 w-[550px] block mx-auto">
+                    ยืนยันข้อมูล
                 </button>
             </div>
-            {/* Bottom Navbar */}
-        <div className="bg-gray-800 text-white py-2 w-full min-h-[250] flex items-center justify-center mt-12">
-            <div className="text-center">
-                <p>&copy; 2025 Company Name. All rights reserved.</p>
+       {/* Bottom Navbar */}
+       <div className="bg-gray-800 text-white py-2 w-full min-h-[250] flex items-center justify-center mt-72">
+                <p className="text-xs text-gray-300"> 
+                    สงวนลิขสิทธิ์ @ 2025 | All rights reserved.
+                </p>
             </div>
-        </div>
-       
         </div>
     );
 }
