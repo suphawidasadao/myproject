@@ -194,18 +194,18 @@ export default function Home() {
     return (
         <div className="relative">
             {/* Navbar*/}
-            <nav className="bg-white border-b shadow-md py-1 w-full">
-                <div className="container mx-auto px-4">
+            <nav className="bg-white border-b shadow-md py-3 w-full">
+                <div className="container mx-auto px-24">
                     <div className="flex justify-between items-center">
                         <Image
                             src="/logo.svg"
                             alt="logo"
-                            width={100}
-                            height={100}
+                            width={150}
+                            height={150}
                             className="object-cover"
                         />
 
-                        <ul className="flex space-x-4 items-center text-[10px]">
+                        <ul className="flex space-x-4 items-center text-[14px]">
                             {/* Dropdown 1 */}
                             <li
                                 className="relative dropdown"
@@ -281,7 +281,7 @@ export default function Home() {
                 </div>
             </nav>
 
-            <div className="relative w-full h-[300px]">
+            <div className="relative w-full h-[400px]">
                 <Image
                     src="/bg.svg"
                     alt="Logo"
@@ -289,7 +289,7 @@ export default function Home() {
                     objectFit="cover"
                 />
                 <div className="absolute inset-0 flex justify-center items-center">
-                    <div className="container mx-auto px-4">
+                    <div className="container mx-auto px-24">
                         <div className="bg-white p-4 rounded shadow-md flex space-x-4">
                             {/* กล่องเลือกจังหวัด */}
                             <div
@@ -311,7 +311,7 @@ export default function Home() {
                                         value={selectedProvince}
                                         onChange={(e) => setSelectedProvince(e.target.value)}
                                         placeholder="เลือกหรือพิมพ์จังหวัด"
-                                        className="border border-gray-300 rounded px-3 py-1 text-gray-700 focus:outline-none text-[10px] w-full"
+                                        className="border border-gray-300 rounded p-2 text-gray-700 focus:outline-none text-[12px] w-full"
                                     />
 
                                     {selectedProvince && (
@@ -340,7 +340,7 @@ export default function Home() {
                                             type="datetime-local"
                                             id="pickup"
                                             name="pickup"
-                                            className="text-[10px] p-1 border border-gray-300 rounded-md focus:outline-none"
+                                            className="text-[12px] p-2 border border-gray-300 rounded-md focus:outline-none"
                                             value={pickupDate}
                                             onChange={handlePickupChange}
                                         />
@@ -354,7 +354,7 @@ export default function Home() {
                                             type="datetime-local"
                                             id="return"
                                             name="return"
-                                            className="text-[10px] p-1 border border-gray-300 rounded-md focus:outline-none"
+                                            className="text-[12px] p-2 border border-gray-300 rounded-md focus:outline-none"
                                             value={returnDate}
                                             onChange={handleReturnChange}
                                         />
@@ -364,7 +364,7 @@ export default function Home() {
 
                             {/* ปุ่มค้นหารถเช่า */}
                             <div className="flex items-center">
-                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-md text-[10px] whitespace-nowrap transition transform duration-300 hover:scale-105">
+                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-md text-[12px] whitespace-nowrap transition transform duration-300 hover:scale-105">
                                     ค้นหารถเช่า
                                 </button>
                             </div>
@@ -373,8 +373,8 @@ export default function Home() {
                 </div>
             </div>
             <div className='bg-gray-100'>
-                <div className="container mx-auto px-4 py-6">
-                    <h1 className="text-base font-bold text-gray-800 mb-4">
+                <div className="container mx-auto px-24 py-6">
+                    <h1 className="text-xl font-bold text-gray-800 mb-4">
                         รถเช่าราคาพิเศษ
                     </h1>
                     <div className="flex justify-center">
@@ -382,9 +382,9 @@ export default function Home() {
                             {currentItems.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-lg shadow-md overflow-hidden w-48 hover:shadow-lg transition-shadow"
+                                    className="bg-white rounded-lg shadow-md overflow-hidden w-72 hover:shadow-lg transition-shadow"
                                 >
-                                    <div className="relative w-full h-32">
+                                    <div className="relative w-full h-56">
                                         <Image
                                             src={item.image}
                                             alt={item.location}
@@ -439,11 +439,11 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 py-6">
-                <h1 className="text-base font-bold text-gray-800 mb-2">
+            <div className="container mx-auto px-24 py-6">
+                <h1 className="text-xl font-bold text-gray-800 mb-2">
                     เช่ารถกับไดรฟ์เฟลกซ์
                 </h1>
-                <p className="text-sm font-bold text-gray-400 mb-4 ">
+                <p className="text-base font-bold text-gray-400 mb-4 ">
                     เช่ารถกับเราดียังไง
                 </p>
                 <div className="grid grid-cols-3 gap-4">
@@ -462,12 +462,12 @@ export default function Home() {
                     <Image
                             src="/officer.svg"
                             alt="logo"
-                            width={35}
-                            height={35}
+                            width={40}
+                            height={40}
                             className="object-cover mb-2"
                         />
-                        <p className="text-[14px] font-bold text-gray-800">เจ้าหน้าที่ดูแล</p>
-                        <p className="text-[12px] text-gray-500">มีเจ้าหน้าที่ดูแลตลอดการเช่า</p>
+                        <p className="text-[18px] font-bold text-gray-800">เจ้าหน้าที่ดูแล</p>
+                        <p className="text-[14px] text-gray-500">มีเจ้าหน้าที่ดูแลตลอดการเช่า</p>
                     </div>
                     <div className="flex flex-col justify-between">
                     <Image
@@ -477,17 +477,17 @@ export default function Home() {
                             height={35}
                             className="object-cover mb-2"
                         />
-                        <p className="text-[14px] font-bold text-gray-800">เปรียบเทียบราคา</p>
-                        <p className="text-[12px] text-gray-500">เทียบราคารถเช่าทุกร้านได้ทันที</p>
+                        <p className="text-[18px] font-bold text-gray-800">เปรียบเทียบราคา</p>
+                        <p className="text-[14px] text-gray-500">เทียบราคารถเช่าทุกร้านได้ทันที</p>
                     </div>
                 </div>
             </div>
 
             <div className="bg-gray-50 py-10">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-24">
                     <div className="mb-6">
-                        <h1 className="text-2xl font-bold text-gray-800">เช่ารถตามภูมิภาค</h1>
-                        <p className="text-gray-500">รวมรถเช่าจากบริษัทรถเช่าทั่วประเทศ</p>
+                        <h1 className="text-xl font-bold text-gray-800">เช่ารถตามภูมิภาค</h1>
+                        <p className="text-gray-500 text-base">รวมรถเช่าจากบริษัทรถเช่าทั่วประเทศ</p>
                     </div>
 
                     {/* Region Cards */}
@@ -538,27 +538,27 @@ export default function Home() {
             </div>
 
             <div className='bg-blue-100'>
-                <div className="container mx-auto px-4 pt-6">
-                    <p>ตรวจสอบการจองของคุณ</p>
-                    <div className="flex items-center space-x-4 pt-4"> {/* Flexbox สำหรับจัดเรียงในแถวเดียว */}
+                <div className="container mx-auto px-24 pt-6">
+                <h1 className="text-xl font-bold text-gray-800 mb-2">
+                    ตรวจสอบการจองของคุณ
+                </h1>
+                    <div className="flex items-center space-x-4 pt-4">
                         <input
                             type="text"
                             placeholder="* กรอกหมายเลขการจอง"
-                            className="border border-gray-300 rounded mb-6 px-3 py-2 text-gray-700 focus:outline-none text-[10px] w-80"
+                            className="border border-gray-300 rounded mb-6 px-3 py-2 text-gray-700 focus:outline-none text-[12px] w-80"
                         />
                         <input
                             type="text"
                             placeholder="* กรอกนามสกุล"
-                            className="border border-gray-300 rounded mb-6 px-3 py-2 text-gray-700 focus:outline-none text-[10px] w-80"
+                            className="border border-gray-300 rounded mb-6 px-3 py-2 text-gray-700 focus:outline-none text-[12px] w-80"
                         />
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-12 mb-6 rounded text-xs">
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-12 mb-6 rounded text-sm">
                             ปุ่ม
                         </button>
                     </div>
                 </div>
             </div>
-
-
 
         </div>
 
