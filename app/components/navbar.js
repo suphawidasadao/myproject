@@ -2,12 +2,13 @@
 
 import Image from 'next/image';
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'; // ใช้ useRouter สำหรับการเปลี่ยนเส้นทาง
 
 export default function Navbar() {
     const [isHelpDropdownOpen, setIsHelpDropdownOpen] = useState(false);
     const [isSignUpDropdownOpen, setIsSignUpDropdownOpen] = useState(false);
-    const [helpOptionSelected, setHelpOptionSelected] = useState(null);
-    const [signUpOptionSelected, setSignUpOptionSelected] = useState(null);
+
+    const router = useRouter(); // ประกาศ useRouter
 
     // เปิดเมนูเมื่อคลิกที่ "ความช่วยเหลือ" หรือ "สมัครสมาชิก"
     const toggleHelpDropdown = () => {
@@ -18,17 +19,9 @@ export default function Navbar() {
         setIsSignUpDropdownOpen(!isSignUpDropdownOpen);
     };
 
-    // เมื่อเลือกตัวเลือกใน dropdown จะทำการปิด dropdown
-    const handleHelpOptionClick = (option, e) => {
-        e.stopPropagation();
-        setHelpOptionSelected(option);
-        setIsHelpDropdownOpen(false);
-    };
-
-    const handleSignUpOptionClick = (option, e) => {
-        e.stopPropagation();
-        setSignUpOptionSelected(option);
-        setIsSignUpDropdownOpen(false);
+    // ฟังก์ชันสำหรับการเปลี่ยนเส้นทางเมื่อคลิก "สมัครสมาชิก" หรือ "ลงชื่อเข้าใช้"
+    const handleNavigation = (path) => {
+        router.push(path); // ใช้ router.push เพื่อเปลี่ยนไปยังเส้นทางใหม่
     };
 
     // ปิด dropdown เมื่อคลิกที่พื้นที่อื่นบนหน้าจอ
@@ -39,11 +32,9 @@ export default function Navbar() {
         }
     };
 
-    // เพิ่ม event listener เมื่อคลิกที่พื้นที่อื่น
     React.useEffect(() => {
         document.addEventListener('click', handleClickOutside);
 
-        // ลบ event listener เมื่อคอมโพเนนต์ถูกทำลาย
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -51,7 +42,7 @@ export default function Navbar() {
 
     return (
         <div>
-            {/* Navbar*/}
+            {/* Navbar */}
             <nav className="bg-white border-b shadow-md py-3 w-full">
                 <div className="container mx-auto px-24">
                     <div className="flex justify-between items-center">
@@ -85,7 +76,6 @@ export default function Navbar() {
                                         <li>
                                             <a
                                                 href="#"
-                                                onClick={(e) => handleHelpOptionClick("ตัวเลือกที่ 1", e)}
                                                 className="block px-5 py-2 text-gray-700 hover:bg-gray-100 text-[10px]"
                                             >
                                                 วิธีการจองรถ
@@ -111,27 +101,30 @@ export default function Navbar() {
                                         <path d="M22.586,5.929l-9.879,9.879a1.021,1.021,0,0,1-1.414,0L1.42,5.934.006,7.348l9.873,9.874a3.075,3.075,0,0,0,4.243,0L24,7.343Z" />
                                     </svg>
                                 </a>
+                                {/* Dropdown Content */}
                                 {isSignUpDropdownOpen && (
-                                    <ul className="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded shadow-md z-10">
-                                        <li>
-                                            <a
-                                                href="#"
-                                                onClick={(e) => handleSignUpOptionClick("สมัครสมาชิก", e)}
-                                                className="block px-5 py-2 text-gray-700 hover:bg-blue-500 hover:text-white text-[10px] rounded"
-                                            >
-                                                สมัครสมาชิก
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                onClick={(e) => handleSignUpOptionClick("ลงชื่อเข้าใช้", e)}
-                                                className="block px-5 py-2 text-gray-700 hover:bg-blue-500 hover:text-white text-[10px] rounded"
-                                            >
-                                                ลงชื่อเข้าใช้
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-48 p-4 z-50">
+                                        <p className="text-sm text-gray-700 mb-4">
+                                            รับส่วนลดพิเศษสำหรับสมาชิก Drivehub พร้อมการจองที่รวดเร็วและไม่ยุ่งยาก!
+                                        </p>
+                                        <button
+                                            onClick={() => alert("ไปยังหน้าลงชื่อเข้าใช้")}
+                                            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+                                        >
+                                            เข้าสู่ระบบ
+                                        </button>
+
+                                        <div className="text-center my-2 text-sm text-gray-500">
+                                            เข้าเว็บไซต์ Drivehub เป็นครั้งแรกใช่ไหม?
+                                        </div>
+
+                                        <button
+                                            onClick={() => alert("ไปยังหน้าสมัครสมาชิก")}
+                                            className="w-full border border-blue-500 text-blue-500 py-2 px-4 rounded-lg hover:bg-blue-500 hover:text-white transition"
+                                        >
+                                            สมัครสมาชิกเลย
+                                        </button>
+                                    </div>
                                 )}
                             </li>
                         </ul>
@@ -140,5 +133,4 @@ export default function Navbar() {
             </nav>
         </div>
     );
-
 }
