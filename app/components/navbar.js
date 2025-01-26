@@ -13,15 +13,22 @@ export default function Navbar() {
     // เปิดเมนูเมื่อคลิกที่ "ความช่วยเหลือ" หรือ "สมัครสมาชิก"
     const toggleHelpDropdown = () => {
         setIsHelpDropdownOpen(!isHelpDropdownOpen);
+        setIsSignUpDropdownOpen(false); // ปิด dropdown "สมัครสมาชิก"
     };
 
     const toggleSignUpDropdown = () => {
         setIsSignUpDropdownOpen(!isSignUpDropdownOpen);
+        setIsHelpDropdownOpen(false); // ปิด dropdown "ความช่วยเหลือ"
     };
 
-    // ฟังก์ชันสำหรับการเปลี่ยนเส้นทางเมื่อคลิก "สมัครสมาชิก" หรือ "ลงชื่อเข้าใช้"
-    const handleNavigation = (path) => {
-        router.push(path); // ใช้ router.push เพื่อเปลี่ยนไปยังเส้นทางใหม่
+    // ฟังก์ชันสำหรับการเปลี่ยนเส้นทางไปยังหน้า login
+    const goToLogin = () => {
+        router.push('/loginpage'); // ไปยังหน้า login
+    };
+
+    // ฟังก์ชันสำหรับการเปลี่ยนเส้นทางไปยังหน้า signup
+    const goToSignUp = () => {
+        router.push('/registerpage'); // ไปยังหน้า signup
     };
 
     // ปิด dropdown เมื่อคลิกที่พื้นที่อื่นบนหน้าจอ
@@ -49,13 +56,12 @@ export default function Navbar() {
                         <Image
                             src="/logo.svg"
                             alt="logo"
-                            width={150}
-                            height={150}
+                            width={100}
+                            height={100}
                             className="object-cover"
                         />
 
-                        <ul className="flex space-x-4 items-center text-[14px]">
-                            {/* Dropdown 1 */}
+                        <ul className="flex space-x-4 items-center text-[12px]">
                             <li
                                 className="relative dropdown"
                                 onClick={toggleHelpDropdown}
@@ -72,20 +78,17 @@ export default function Navbar() {
                                     </svg>
                                 </a>
                                 {isHelpDropdownOpen && (
-                                    <ul className="absolute top-full left-0 mt-2 bg-white border rounded shadow-md z-10">
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="block px-5 py-2 text-gray-700 hover:bg-gray-100 text-[10px]"
-                                            >
-                                                วิธีการจองรถ
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-36 p-4 z-50">
+                                        <button
+                                            onClick={() => alert("ไปยังหน้าลงชื่อเข้าใช้")}
+                                            className="w-full text-black hover:text-blue-700 py-2 px-4 rounded-md hover:bg-blue-100 transition"
+                                        >
+                                            วิธีการจองรถ
+                                        </button>
+                                    </div>
                                 )}
                             </li>
 
-                            {/* Dropdown 2 */}
                             <li
                                 className="relative dropdown"
                                 onClick={toggleSignUpDropdown}
@@ -101,26 +104,26 @@ export default function Navbar() {
                                         <path d="M22.586,5.929l-9.879,9.879a1.021,1.021,0,0,1-1.414,0L1.42,5.934.006,7.348l9.873,9.874a3.075,3.075,0,0,0,4.243,0L24,7.343Z" />
                                     </svg>
                                 </a>
-                                {/* Dropdown Content */}
+
                                 {isSignUpDropdownOpen && (
                                     <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-48 p-4 z-50">
-                                        <p className="text-sm text-gray-700 mb-4">
+                                        <p className=" text-gray-700 mb-4">
                                             รับส่วนลดพิเศษสำหรับสมาชิก Drivehub พร้อมการจองที่รวดเร็วและไม่ยุ่งยาก!
                                         </p>
                                         <button
-                                            onClick={() => alert("ไปยังหน้าลงชื่อเข้าใช้")}
+                                            onClick={goToLogin} // เปลี่ยนเส้นทางไปยังหน้า login
                                             className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
                                         >
                                             เข้าสู่ระบบ
                                         </button>
 
-                                        <div className="text-center my-2 text-sm text-gray-500">
+                                        <div className="text-center my-2 text-gray-500">
                                             เข้าเว็บไซต์ Drivehub เป็นครั้งแรกใช่ไหม?
                                         </div>
 
                                         <button
-                                            onClick={() => alert("ไปยังหน้าสมัครสมาชิก")}
-                                            className="w-full border border-blue-500 text-blue-500 py-2 px-4 rounded-lg hover:bg-blue-500 hover:text-white transition"
+                                            onClick={goToSignUp} // เปลี่ยนเส้นทางไปยังหน้า signup
+                                            className="w-full border border-blue-500 text-blue-500 py-2 px-4 rounded-lg hover:text-blue-800 transition"
                                         >
                                             สมัครสมาชิกเลย
                                         </button>
