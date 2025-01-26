@@ -213,7 +213,7 @@ export default function Home() {
                     </form>
                 </div>
             </div>
-            <div className="bg-white border p-4 rounded-md shadow-md -mt-60 w-[620px] ml-[730px]">
+            <div className="bg-white border p-4 rounded-md shadow-md mt-[-300px] w-[620px] ml-[730px]">
                 <p className="text-center text-black mb-4">
                     กรุณาตรวจสอบข้อมูลการเช่าให้ครบถ้วนก่อนการกดยืนยัน
                 </p>
