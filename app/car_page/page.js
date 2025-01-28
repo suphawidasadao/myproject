@@ -252,133 +252,232 @@ export default function Home() {
             
             
             <div className="p-6 space-y-6">
-  {/* Toyota Yaris 1.2 G 2014 Card */}
-  <div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <Image
-      src="/toyota-yaris-2014.jpg"
-      alt="Toyota Yaris 1.2 G 2014"
-      width={800}
-      height={200}
-      className="w-full h-48 object-cover"
-    />
-    <div className="p-4">
-      <h2 className="text-xl font-semibold">TOYOTA YARIS 1.2 G 2014</h2>
-      <p className="text-gray-600">รถยนต์ 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน</p>
-      <p className="text-sm text-gray-500">⭐ 4.5 (100 รีวิว)</p>
-      <p className="text-lg font-bold text-blue-600">฿ 1,190/วัน</p>
-      <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-        รายละเอียดรถเช่า
-      </button>
-    </div>
-  </div>
-
-
-
-  {/* Honda City 2020 Card */}
-  <div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <Image
-      src="/honda-city-2020.jpg"
+            <div className="bg-white rounded-lg shadow-md overflow-hidden border p-4 flex">
+  {/* รูปภาพทางซ้าย */}
+  <div className="w-1/3">
+    <img
+      src="/images/honda-city-2020.jpg"
       alt="Honda City 2020"
-      width={500}
-      height={300}
-      className="w-full h-48 object-cover"
+      className="w-full h-full object-cover rounded-md"
     />
-    <div className="p-4">
-      <h2 className="text-xl font-semibold">HONDA CITY 2020</h2>
-      <p className="text-gray-600">รถยนต์ 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน</p>
-      <p className="text-sm text-gray-500">⭐ 4.5 (100 รีวิว)</p>
-      <p className="text-lg font-bold text-blue-600">฿ 1,590/วัน</p>
-      <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+  </div>
+
+  {/* ข้อมูลทางขวา */}
+  <div className="w-2/3 pl-4 flex flex-col justify-between">
+    <div>
+      <h2 className="text-lg font-bold text-gray-800">TOYOTA YARIS 1.2 G 2014</h2>
+      <p className="text-sm text-gray-600 mt-2">
+        รถเก๋ง 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน
+      </p>
+      <div className="flex items-center mt-2">
+        <p className="text-sm text-gray-500">ฟรีประกันภัย</p>
+        <span className="mx-1">•</span>
+        <p className="text-sm text-gray-500">ใช้น้ำมันพื้นฐาน</p>
+      </div>
+      <div className="flex items-center mt-2">
+        <span className="text-yellow-500 text-sm">⭐</span>
+        <p className="text-sm text-gray-600 ml-1">4.5 (100 รีวิว)</p>
+      </div>
+
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">ชำระเมื่อจอง หรือโอนผ่านแอป</p>
+        <p className="text-lg font-bold text-blue-600">฿ 1,190</p>
+      </div>
+    </div>
+
+    <div className="mt-6">
+      <button
+        className="bg-blue-500 text-white py-2 px-4 rounded-md text-sm hover:bg-blue-600 w-full"
+      >
         รายละเอียดรถเช่า
       </button>
     </div>
   </div>
-
-  {/* Duplicate set of cards */}
-  <div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <Image
-      src="/toyota-yaris-2014.jpg"
-      alt="Toyota Yaris 1.2 G 2014"
-      width={800}
-      height={200}
-      className="w-full h-48 object-cover"
-    />
-    <div className="p-4">
-      <h2 className="text-xl font-semibold">SUZUKI CIAZ 1.2 GL 2018</h2>
-      <p className="text-gray-600">รถยนต์ 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน</p>
-      <p className="text-sm text-gray-500">⭐ 4.5 (100 รีวิว)</p>
-      <p className="text-lg font-bold text-blue-600">฿ 1,400 /วัน</p>
-      <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-        รายละเอียดรถเช่า
-      </button>
-    </div>
-  </div>
-
-  <div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <Image
-      src="/honda-city-2020.jpg"
-      alt="Honda City 2020"
-      width={800}
-      height={200}
-      className="w-full h-48 object-cover"
-    />
-    <div className="p-4">
-      <h2 className="text-xl font-semibold">Toyota Vios 1.5 G 2013</h2>
-      <p className="text-gray-600">รถยนต์ 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน</p>
-      <p className="text-sm text-gray-500">⭐ 4.5 (100 รีวิว)</p>
-      <p className="text-lg font-bold text-blue-600">฿ 1,080/วัน</p>
-      <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 right: 20px">
-        รายละเอียดรถเช่า
-      </button>
-    </div>
-    
 </div>
 
-{/* Duplicate set of cards */}
-<div className="bg-white rounded-lg shadow-md overflow-hidden">
-    <Image
-      src="/honda-city-2020.jpg"
+
+
+
+  <div className="bg-white rounded-lg shadow-md overflow-hidden border p-4 flex">
+  {/* รูปภาพทางซ้าย */}
+  <div className="w-1/3">
+    <img
+      src="/images/honda-city-2020.jpg"
       alt="Honda City 2020"
-      width={800}
-      height={200}
-      className="w-full h-48 object-cover"
+      className="w-full h-full object-cover rounded-md"
     />
-    <div className="p-4">
-      <h2 className="text-xl font-semibold">Toyota Yaris Ativ 1.2 2023</h2>
-      <p className="text-gray-600">รถยนต์ 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน</p>
-      <p className="text-sm text-gray-500">⭐ 4.5 (100 รีวิว)</p>
-      <p className="text-lg font-bold text-blue-600">฿ 2,390 /วัน</p>
-      <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+  </div>
+
+  {/* ข้อมูลทางขวา */}
+  <div className="w-2/3 pl-4 flex flex-col justify-between">
+    <div>
+      <h2 className="text-lg font-bold text-gray-800">HONDA CITY 2020</h2>
+      <p className="text-sm text-gray-600 mt-2">
+        รถเก๋ง 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน
+      </p>
+      <div className="flex items-center mt-2">
+        <p className="text-sm text-gray-500">ฟรีประกันภัย</p>
+        <span className="mx-1">•</span>
+        <p className="text-sm text-gray-500">ใช้น้ำมันพื้นฐาน</p>
+      </div>
+      <div className="flex items-center mt-2">
+        <span className="text-yellow-500 text-sm">⭐</span>
+        <p className="text-sm text-gray-600 ml-1">4.5 (100 รีวิว)</p>
+      </div>
+
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">ชำระเมื่อจอง หรือโอนผ่านแอป</p>
+        <p className="text-lg font-bold text-blue-600">฿ 1,590</p>
+      </div>
+    </div>
+
+    <div className="mt-6">
+      <button
+        className="bg-blue-500 text-white py-2 px-4 rounded-md text-sm hover:bg-blue-600 w-full"
+      >
         รายละเอียดรถเช่า
       </button>
     </div>
   </div>
+</div>
+
+
+  <div className="bg-white rounded-lg shadow-md overflow-hidden border p-4 flex">
+  {/* รูปภาพทางซ้าย */}
+  <div className="w-1/3">
+  <img
+  src="https://www.priceusedcar.com/Picture/87554/%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%96%E0%B9%80%E0%B8%81%E0%B9%8B%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-suzuki-%E0%B8%8B%E0%B8%B9%E0%B8%8B%E0%B8%B9%E0%B8%81%E0%B8%B4-%E0%B8%A3%E0%B8%96%E0%B8%9B%E0%B8%B52018-%E0%B8%A3%E0%B8%AB%E0%B8%B1%E0%B8%AA87554-3e26ef4b.jpg?v=0001"
+  alt="Suzuki Car"
+  className="w-full h-full object-cover rounded-md"
+/>
+
+  </div>
+
+  {/* ข้อมูลทางขวา */}
+  <div className="w-2/3 pl-4 flex flex-col justify-between">
+    <div>
+      <h2 className="text-lg font-bold text-gray-800">SUZUKI CIAZ 1.2 GL 2018</h2>
+      <p className="text-sm text-gray-600 mt-2">
+        รถเก๋ง 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน
+      </p>
+      <div className="flex items-center mt-2">
+        <p className="text-sm text-gray-500">ฟรีประกันภัย</p>
+        <span className="mx-1">•</span>
+        <p className="text-sm text-gray-500">ใช้น้ำมันพื้นฐาน</p>
+      </div>
+      <div className="flex items-center mt-2">
+        <span className="text-yellow-500 text-sm">⭐</span>
+        <p className="text-sm text-gray-600 ml-1">4.5 (100 รีวิว)</p>
+      </div>
+
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">ชำระเมื่อจอง หรือโอนผ่านแอป</p>
+        <p className="text-lg font-bold text-blue-600">฿ 1,400</p>
+      </div>
+    </div>
+
+    <div className="mt-6">
+      <button
+        className="bg-blue-500 text-white py-2 px-4 rounded-md text-sm hover:bg-blue-600 w-full"
+      >
+        รายละเอียดรถเช่า
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div className="bg-white rounded-lg shadow-md overflow-hidden border p-4 flex">
+  {/* รูปภาพทางซ้าย */}
+  <div className="w-1/3">
+    <img
+      src="/images/honda-city-2020.jpg"
+      alt="Honda City 2020"
+      className="w-full h-full object-cover rounded-md"
+    />
+  </div>
+
+  {/* ข้อมูลทางขวา */}
+  <div className="w-2/3 pl-4 flex flex-col justify-between">
+    <div>
+      <h2 className="text-lg font-bold text-gray-800">Toyota Vios 1.5 G 2013</h2>
+      <p className="text-sm text-gray-600 mt-2">
+        รถเก๋ง 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน
+      </p>
+      <div className="flex items-center mt-2">
+        <p className="text-sm text-gray-500">ฟรีประกันภัย</p>
+        <span className="mx-1">•</span>
+        <p className="text-sm text-gray-500">ใช้น้ำมันพื้นฐาน</p>
+      </div>
+      <div className="flex items-center mt-2">
+        <span className="text-yellow-500 text-sm">⭐</span>
+        <p className="text-sm text-gray-600 ml-1">4.5 (100 รีวิว)</p>
+      </div>
+
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">ชำระเมื่อจอง หรือโอนผ่านแอป</p>
+        <p className="text-lg font-bold text-blue-600">฿ 1,080</p>
+      </div>
+    </div>
+
+    <div className="mt-6">
+      <button
+        className="bg-blue-500 text-white py-2 px-4 rounded-md text-sm hover:bg-blue-600 w-full"
+      >
+        รายละเอียดรถเช่า
+      </button>
+    </div>
+  </div>
+</div>
+
 
   
-  <div className="bg-white rounded-lg shadow-md overflow-hidden relative">
-  <Image
-    src="/images/toyota-yaris-2014.jpg"
-    alt="Toyota Yaris 1.2 G 2014"
-    width={800}
-    height={200}
-    className="w-full h-48 object-cover"
-  />
+  <div className="bg-white rounded-lg shadow-md overflow-hidden border p-4 flex">
+  {/* รูปภาพทางซ้าย */}
+  <div className="w-1/3">
+  <img
+  src="https://www.gurumalist.com/_image.aspx/ogEZWmrkOiJ95n1YahWL0LgR3JTbMkQfodW9aIcZ8R2GXyjOJ_-aZpeTN1wkhhZN/Car"
+  alt="Car"
+  className="w-full h-full object-cover rounded-md"
+/>
 
-  <div className="absolute top-4 right-4 text-right">
-    <h2 className="text-xl font-semibold">Toyota Yaris Ativ 1.2</h2>
-    <p className="text-gray-600">รถยนต์ 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน</p>
-    <p className="text-sm text-gray-500">⭐ 4.5 (100 รีวิว)</p>
-    <p className="text-lg font-bold text-blue-600">฿ 2,390/วัน</p>
   </div>
 
-  <div className="p-4 relative">
-    <button
-      className="absolute bottom-4 right-4 bg-blue-500 text-white py-1 px-4 rounded-md text-sm hover:bg-blue-600"
-    >
-      รายละเอียดรถเช่า
-    </button>
+  {/* ข้อมูลทางขวา */}
+  <div className="w-2/3 pl-4 flex flex-col justify-between">
+    <div>
+      <h2 className="text-lg font-bold text-gray-800">Toyota Yaris Ativ 1.2 2023</h2>
+      <p className="text-sm text-gray-600 mt-2">
+        รถเก๋ง 4 ประตู, เกียร์อัตโนมัติ, 1,200cc น้ำมันเบนซิน
+      </p>
+      <div className="flex items-center mt-2">
+        <p className="text-sm text-gray-500">ฟรีประกันภัย</p>
+        <span className="mx-1">•</span>
+        <p className="text-sm text-gray-500">ใช้น้ำมันพื้นฐาน</p>
+      </div>
+      <div className="flex items-center mt-2">
+        <span className="text-yellow-500 text-sm">⭐</span>
+        <p className="text-sm text-gray-600 ml-1">4.5 (100 รีวิว)</p>
+      </div>
+
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">ชำระเมื่อจอง หรือโอนผ่านแอป</p>
+        <p className="text-lg font-bold text-blue-600">฿ 2,390</p>
+      </div>
+    </div>
+
+    <div className="mt-6">
+      <button
+        className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+      >
+        รายละเอียดรถเช่า
+      </button>
+    </div>
   </div>
 </div>
+
+
+
 
 
 
