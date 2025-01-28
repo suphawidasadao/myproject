@@ -156,9 +156,12 @@ export default function Home() {
                                 alt="RN Rent A Car"
                                 className="w-28 h-22 rounded-md mt-[-200px] ml-10"
                             />
-                            <span className="ml-16 mt-[-200px]">
-                                <p className="font-bold text-lg">ร้านรถเช่า</p>Local<br />RN Rent A Car<br />กรุงเทพมหานคร
-                            </span>
+                            <p className="ml-16 mt-[-200px]">
+                                <span className="text-lg text-gray-400">ร้านรถเช่า</span><br/>
+                                <span className='text-sm text-orange-400'>Local</span><br/>
+                                RN Rent A Car<br/>
+                                กรุงเทพมหานคร
+                            </p>
                         </div>
                     </div>
                 </div>
