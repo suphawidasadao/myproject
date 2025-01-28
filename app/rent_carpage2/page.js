@@ -156,67 +156,69 @@ export default function Home() {
                                 alt="RN Rent A Car"
                                 className="w-28 h-22 rounded-md mt-[-200px] ml-10"
                             />
-                            <span className="ml-16 mt-[-200px]">
-                                <p className="font-bold text-lg">ร้านรถเช่า</p>Local<br />RN Rent A Car<br />กรุงเทพมหานคร
-                            </span>
+                            <p className="ml-16 mt-[-200px]">
+                                <span className="text-lg text-gray-400">ร้านรถเช่า</span><br/>
+                                <span className='text-sm text-orange-400'>Local</span><br/>
+                                RN Rent A Car<br/>
+                                กรุงเทพมหานคร
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Payment Summary Section */}
-                <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
-                    <h3 className="text-lg font-bold mb-4">สรุปรายการชำระทั้งหมด</h3>
-                    
-                    {/* ชำระในวันรับรถ */}
-                    <div className="mb-4">
-                        <h4 className="font-bold mb-2">ชำระในวันรับรถ</h4>
-                        <ul className="text-sm text-gray-600 space-y-1">
-                            <li className="flex justify-between">
-                                <span>ค่าเช่า 2 วัน</span>
-                                <span>฿2,398</span>
-                            </li>
-                            <li className="flex justify-between">
-                                <span>ค่ารถ - ค่าส่ง</span>
-                                <span>฿400</span>
-                            </li>
-                        </ul>
-                        <div className="flex justify-between font-bold border-t pt-2 mt-2">
-                            <span>Total</span>
-                            <span>฿2,798</span>
-                        </div>
+                <div className="bg-white p-6 rounded-lg shadow-lg w-full mx-auto flex-1 h-[610px]">
+                <h3 className="text-xl font-bold mb-6 text-gray-800">สรุปรายการชำระทั้งหมด</h3>
+
+                {/* ชำระในวันรับรถ */}
+                <div className="mb-6">
+                    <h4 className="font-semibold text-blue-600 mb-3 text-lg">ชำระในวันรับรถ</h4>
+                    <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex justify-between font-semibold text-lg text-gray-800 border-t border-dashed pt-3 mt-3">
+                    <span> ค่าเช่ารถ 2 วัน</span>
+                            <span>฿2,398</span>
+                        </li>
+                        <span> ราคาต่อวัน ฿1,199 x 2วัน</span>
+                        <li className="flex justify-between font-semibold text-lg text-gray-800">
+                            <span>ค่ารับ - ค่าส่ง</span>
+                            <span>฿400</span>
+                        </li>
+                        <span> ราคาต่อวัน ฿1,199 x 2วัน</span>
+                    </ul>
+                    <div className="flex justify-between font-semibold text-lg text-gray-800">
+                        <span>Total</span>
+                        <span>฿2,798</span>
                     </div>
-                    
-                    {/* ค่ามัดจำ */}
-                    <div className="mb-4">
-                        <h4 className="font-bold mb-2">ค่ามัดจำ</h4>
-                        <ul className="text-sm text-gray-600 space-y-1">
-                            <li>
-                                <span>ได้รับคืนในวันคืนรถตามเงื่อนไขของบริษัทกำหนด</span>
-                            </li>
-                        </ul>
-                        <div className="flex justify-between font-bold border-t pt-2 mt-2">
-                            <span>Total</span>
-                            <span>฿3,000</span>
-                        </div>
-                    </div>
-                    
-                    {/* ที่ต้องชำระตอนนี้ */}
-                    <div className="mb-4">
-                        <h4 className="font-bold mb-2">ที่ต้องชำระตอนนี้</h4>
-                        <div className="flex justify-between font-bold text-green-500">
-                            <span>ชำระตอนนี้</span>
-                            <span>฿0</span>
-                        </div>
-                    </div>
-                   
-                    {/* Confirm Button */}
-                    <button
-                        type="button"
-                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
-                    >
-                        ยืนยันข้อมูลเพื่อชำระรถ
-                    </button>
                 </div>
+
+                {/* ค่ามัดจำ */}
+                <div className="mb-6">
+                    <h4 className="font-semibold text-lg text-blue-600 mb-3">ค่ามัดจำ</h4>
+                    <p className="text-sm text-gray-600 mb-3">
+                        ได้รับคืนในวันคืนรถตามเงื่อนไขของบริษัทกำหนด
+                    </p>
+                    <div className="flex justify-between font-bold text-lg text-gray-800 border-t pt-3 mt-3">
+                        <span>Total</span>
+                        <span>฿3,000</span>
+                    </div>
+                </div>
+
+                {/* ที่ต้องชำระตอนนี้ */}
+                <div className="mb-6">
+                    <h4 className="font-semibold text-lg text-blue-600 mb-3">ที่ต้องชำระตอนนี้</h4>
+                    <div className="flex justify-between font-bold text-green-600 text-lg border-t border-dashed pt-3 mt-3">
+                        <span>ชำระตอนนี้</span>
+                        <span>฿0</span>
+                    </div>
+                </div>
+
+                {/* Confirm Button */}
+                <button
+                    type="button"
+                    className="w-full bg-blue-500 text-white py-3 rounded-md text-center font-medium hover:bg-blue-600 transition"
+                >
+                    ยืนยันข้อมูลเพื่อเช่ารถ
+                </button>
+            </div>
             </div>
             
             {/* Bottom Navbar */}
