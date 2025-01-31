@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState, useEffect } from "react";
 import Navbar from '../components/navbar';
 import Search from '../components/search';
+import Footer from '../components/footer';
 
 export default function Home() {
     
@@ -161,7 +162,7 @@ export default function Home() {
             </div>
             <div className='bg-gray-100'>
                 <div className="container mx-auto px-24 py-6">
-                    <h1 className="text-lg font-bold text-gray-800 mb-4">
+                    <h1 className="text-xl font-bold text-gray-800 mb-4">
                         รถเช่าราคาพิเศษ
                     </h1>
                     <div className="flex justify-center">
@@ -227,10 +228,10 @@ export default function Home() {
             </div>
 
             <div className="container mx-auto px-24 py-6">
-                <h1 className="text-lg font-bold text-gray-800 mb-2">
+                <h1 className="text-xl font-bold text-gray-800 mb-2">
                     เช่ารถกับไดรฟ์เฟลกซ์
                 </h1>
-                <p className="text-base font-bold text-gray-400 mb-4 ">
+                <p className="text-base text-gray-400 mb-4 ">
                     เช่ารถกับเราดียังไง
                 </p>
                 <div className="grid grid-cols-3 gap-4">
@@ -242,8 +243,8 @@ export default function Home() {
                             height={40}
                             className="object-cover mb-2"
                         />
-                        <p className="text-[14px] font-bold text-grain-h-fuly-800">ไม่มีบัตรเครดิตก็เช่าได้</p>
-                        <p className="text-[12px] text-gray-500">แค่ใช้เอกสารยืนยันเท่านั้น</p>
+                        <p className="text-[16px] text-grain-h-fuly-800">ไม่มีบัตรเครดิตก็เช่าได้</p>
+                        <p className="text-[12px] text-gray-500 tracking-wider">แค่ใช้เอกสารยืนยันเท่านั้น</p>
                     </div>
                     <div className="flex flex-col justify-between">
                         <Image
@@ -253,8 +254,8 @@ export default function Home() {
                             height={40}
                             className="object-cover mb-2"
                         />
-                        <p className="text-[14px] font-bold text-gray-800">เจ้าหน้าที่ดูแล</p>
-                        <p className="text-[12px] text-gray-500">มีเจ้าหน้าที่ดูแลตลอดการเช่า</p>
+                        <p className="text-[16px] text-gray-800">เจ้าหน้าที่ดูแล</p>
+                        <p className="text-[12px] text-gray-500 tracking-wider">มีเจ้าหน้าที่ดูแลตลอดการเช่า</p>
                     </div>
                     <div className="flex flex-col justify-between">
                         <Image
@@ -264,8 +265,8 @@ export default function Home() {
                             height={35}
                             className="object-cover mb-2"
                         />
-                        <p className="text-[14px] font-bold text-gray-800">เปรียบเทียบราคา</p>
-                        <p className="text-[12px] text-gray-500">เทียบราคารถเช่าทุกร้านได้ทันที</p>
+                        <p className="text-[16px] text-gray-800">เปรียบเทียบราคา</p>
+                        <p className="text-[12px] text-gray-500 tracking-wider">เทียบราคารถเช่าทุกร้านได้ทันที</p>
                     </div>
                 </div>
             </div>
@@ -273,7 +274,7 @@ export default function Home() {
             <div className="bg-gray-50 py-10">
                 <div className="container mx-auto px-24">
                     <div className="mb-6">
-                        <h1 className="text-lg font-bold text-gray-800">เช่ารถตามภูมิภาค</h1>
+                        <h1 className="text-xl font-bold text-gray-800">เช่ารถตามภูมิภาค</h1>
                         <p className="text-gray-500 text-base">รวมรถเช่าจากบริษัทรถเช่าทั่วประเทศ</p>
                     </div>
 
@@ -294,7 +295,7 @@ export default function Home() {
                                     />
                                 </div>
                                 <div className="p-3">
-                                    <h3 className="text-lg font-semibold text-gray-800">{region.name}</h3>
+                                    <h3 className="text-base font-semibold text-gray-800">{region.name}</h3>
                                     <ul className="mt-2 space-y-1">
                                         {region.places.slice(0, 5).map((place, idx) => (
                                             <li
@@ -354,7 +355,9 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
+            <div>
+                    <Footer />
+                  </div>
         </div>
 
     );
