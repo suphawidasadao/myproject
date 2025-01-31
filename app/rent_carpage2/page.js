@@ -2,105 +2,23 @@
 
 import Image from 'next/image';
 import React, { useState } from "react";
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 export default function Home() {
-    const [isHelpDropdownOpen, setIsHelpDropdownOpen] = useState(false);
-    const [isSignUpDropdownOpen, setIsSignUpDropdownOpen] = useState(false);
-
-    const toggleHelpDropdown = () => {
-        setIsHelpDropdownOpen(!isHelpDropdownOpen);
-    };
-
-    const toggleSignUpDropdown = () => {
-        setIsSignUpDropdownOpen(!isSignUpDropdownOpen);
-    };
-
-    const handleClickOutside = (e) => {
-        if (!e.target.closest('.dropdown')) {
-            setIsHelpDropdownOpen(false);
-            setIsSignUpDropdownOpen(false);
-        }
-    };
-
-    React.useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, []);
 
     return (
         <div className="relative">
             {/* Navbar */}
-            <nav className="bg-white border-b shadow-md py-1 w-full">
-                <div className="container mx-auto px-4">
-                    <div className="flex justify-between items-center">
-                        <Image
-                            src="/Logo.svg"
-                            alt="Logo"
-                            width={100}
-                            height={100}
-                            className="object-cover"
-                        />
-
-                        <ul className="flex space-x-4 items-center text-[10px]">
-                            <li className="relative dropdown" onClick={toggleHelpDropdown}>
-                                <a href="#" className="flex items-center">
-                                    ความช่วยเหลือ
-                                    <svg
-                                        className={`w-3 h-3 ml-1 transition-transform ${isHelpDropdownOpen ? "rotate-180 text-red-500" : "text-blue-500"}`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M22.586,5.929l-9.879,9.879a1.021,1.021,0,0,1-1.414,0L1.42,5.934.006,7.348l9.873,9.874a3.075,3.075,0,0,0,4.243,0L24,7.343Z" />
-                                    </svg>
-                                </a>
-                                {isHelpDropdownOpen && (
-                                    <ul className="absolute top-full left-0 mt-2 bg-white border rounded shadow-md z-10">
-                                        <li>
-                                            <a href="#" className="block px-2 py-2 text-gray-700 hover:bg-gray-100 text-[10px]">
-                                                วิธีการจองรถ
-                                            </a>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-                            <li className="relative dropdown" onClick={toggleSignUpDropdown}>
-                                <a href="#" className="flex items-center">
-                                    สมัครสมาชิก/ลงชื่อเข้าใช้
-                                    <svg
-                                        className={`w-3 h-3 ml-1 transition-transform ${isSignUpDropdownOpen ? "rotate-180 text-red-500" : "text-blue-500"}`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M22.586,5.929l-9.879,9.879a1.021,1.021,0,0,1-1.414,0L1.42,5.934.006,7.348l9.873,9.874a3.075,3.075,0,0,0,4.243,0L24,7.343Z" />
-                                    </svg>
-                                </a>
-                                {isSignUpDropdownOpen && (
-                                    <ul className="absolute top-full left-0 mt-2 bg-white border rounded shadow-md z-10">
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white text-[10px] rounded">
-                                                สมัครสมาชิก
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white text-[10px] rounded">
-                                                ลงชื่อเข้าใช้
-                                            </a>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <div>
+                <Navbar/>
+            </div>
 
               {/* Main Content */}
-            <div className="container mx-auto px-4 mt-4 flex gap-4">
+            <div className="container mx-auto px-24 mt-4 flex gap-4">
                 {/* Summary Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
-                    <h2 className="text-xl font-bold mb-4">สรุปทริปการเดินทาง</h2>
+                    <h2 className="text-base font-bold mb-4">สรุปทริปการเดินทาง</h2>
                     <div className="flex items-center mb-4">
                         <img
                             src="https://phetyont.com/wp-content/uploads/2024/09/Toyota-Yaris-895.jpg"
@@ -108,7 +26,7 @@ export default function Home() {
                             className="w-1/3 rounded-md"
                         />
                         <div className="ml-5">
-                            <h3 className="text-lg font-bold">Toyota Yaris 2023</h3>
+                            <h3 className="text-base font-bold">Toyota Yaris 2023</h3>
                             <p className="text-sm text-gray-600">เกียร์ออโต้</p>
                         </div>
                     </div>
@@ -136,7 +54,7 @@ export default function Home() {
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="50" className="ml-20 relative top-[-20px]">
                             <path d="M135.2 117.4L109.1 192l293.8 0-26.1-74.6C372.3 104.6 360.2 96 346.6 96L165.4 96c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32l181.2 0c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2l0 144 0 48c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-48L96 400l0 48c0 17.7-14.3 32-32 32l-32 0c-17.7 0-32-14.3-32-32l0-48L0 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/>
                         </svg>                           
-                            <p className="text-xl text-gray-600 ml-56 transform translate-y-[-250px]">
+                            <p className="text-base text-gray-600 ml-56 transform translate-y-[-250px]">
                                 <span className='text-gray-400'>รับรถ</span><br/>
                                 สนามบินดอนเมือง<br />
                                 09/01/2025<br />
@@ -157,7 +75,7 @@ export default function Home() {
                                 className="w-28 h-22 rounded-md mt-[-200px] ml-10"
                             />
                             <p className="ml-16 mt-[-200px]">
-                                <span className="text-lg text-gray-400">ร้านรถเช่า</span><br/>
+                                <span className="text-base text-gray-400">ร้านรถเช่า</span><br/>
                                 <span className='text-sm text-orange-400'>Local</span><br/>
                                 RN Rent A Car<br/>
                                 กรุงเทพมหานคร
@@ -167,24 +85,24 @@ export default function Home() {
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-lg w-full mx-auto flex-1 h-[610px]">
-                <h3 className="text-xl font-bold mb-6 text-gray-800">สรุปรายการชำระทั้งหมด</h3>
+                <h3 className="text-base font-bold mb-6 text-gray-800">สรุปรายการชำระทั้งหมด</h3>
 
                 {/* ชำระในวันรับรถ */}
                 <div className="mb-6">
-                    <h4 className="font-semibold text-blue-600 mb-3 text-lg">ชำระในวันรับรถ</h4>
+                    <h4 className="font-semibold text-blue-600 mb-3 text-base">ชำระในวันรับรถ</h4>
                     <ul className="text-sm text-gray-600 space-y-2">
-                    <li className="flex justify-between font-semibold text-lg text-gray-800 border-t border-dashed pt-3 mt-3">
+                    <li className="flex justify-between font-semibold text-base text-gray-800 border-t border-dashed pt-3 mt-3">
                     <span> ค่าเช่ารถ 2 วัน</span>
                             <span>฿2,398</span>
                         </li>
                         <span> ราคาต่อวัน ฿1,199 x 2วัน</span>
-                        <li className="flex justify-between font-semibold text-lg text-gray-800">
+                        <li className="flex justify-between font-semibold text-base text-gray-800">
                             <span>ค่ารับ - ค่าส่ง</span>
                             <span>฿400</span>
                         </li>
                         <span> ราคาต่อวัน ฿1,199 x 2วัน</span>
                     </ul>
-                    <div className="flex justify-between font-semibold text-lg text-gray-800">
+                    <div className="flex justify-between font-semibold text-base text-gray-800">
                         <span>Total</span>
                         <span>฿2,798</span>
                     </div>
@@ -192,11 +110,11 @@ export default function Home() {
 
                 {/* ค่ามัดจำ */}
                 <div className="mb-6">
-                    <h4 className="font-semibold text-lg text-blue-600 mb-3">ค่ามัดจำ</h4>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <h4 className="flex justify-between font-semibold text-base text-blue-600 border-t border-dashed pt-3 mt-3">ค่ามัดจำ</h4>
+                    <p className="text-sm text-gray-600 mb-3 ">
                         ได้รับคืนในวันคืนรถตามเงื่อนไขของบริษัทกำหนด
                     </p>
-                    <div className="flex justify-between font-bold text-lg text-gray-800 border-t pt-3 mt-3">
+                    <div className="flex justify-between font-bold text-base text-gray-800 border-t border-dashed pt-3 mt-3">
                         <span>Total</span>
                         <span>฿3,000</span>
                     </div>
@@ -204,8 +122,8 @@ export default function Home() {
 
                 {/* ที่ต้องชำระตอนนี้ */}
                 <div className="mb-6">
-                    <h4 className="font-semibold text-lg text-blue-600 mb-3">ที่ต้องชำระตอนนี้</h4>
-                    <div className="flex justify-between font-bold text-green-600 text-lg border-t border-dashed pt-3 mt-3">
+                    <h4 className="font-semibold text-base text-blue-600 mb-3">ที่ต้องชำระตอนนี้</h4>
+                    <div className="flex justify-between font-bold text-green-600 text-base border-t border-dashed pt-3 mt-3">
                         <span>ชำระตอนนี้</span>
                         <span>฿0</span>
                     </div>
@@ -221,11 +139,8 @@ export default function Home() {
             </div>
             </div>
             
-            {/* Bottom Navbar */}
-            <div className="bg-gray-800 text-white py-2 w-full min-h-[250] flex items-center justify-center mt-4">
-                <p className="text-xs text-gray-300"> 
-                    สงวนลิขสิทธิ์ @ 2025 | All rights reserved.
-                </p>
+            <div>
+                <Footer/>
             </div>
         </div>
     );
