@@ -15,42 +15,42 @@ export default function Home() {
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-24 py-8">
                 <h1 className="text-base font-bold mb-4">Toyota Yaris ATIV 2023</h1>
 
-                {/* Images */}
+               {/* Images */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                <img
-                            src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F1b2720c8-39ac-434c-9917-4fd450ebc664%2Flarge.png&w=3840&q=100"
-                            alt="Car"
-                            className="w-1/3 rounded-md"
-                        />
-                <img
-                            src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F7c3de337-9297-42a1-a350-977a1a9d20a2%2Flarge.png&w=3840&q=100"
-                            alt="Car"
-                            className="w-1/3 rounded-md"
-                        />
-                <img
-                            src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F2ba7ee84-0494-4249-bf4e-94befaa17854%2Flarge.png&w=3840&q=100"
-                            alt="Car"
-                            className="w-1/3 rounded-md"
-                        />
-                <img
-                            src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F896856af-855c-49b7-bf9e-e75e260df9e3%2Flarge.png&w=3840&q=100"
-                            alt="Car"
-                            className="w-1/3 rounded-md"
-                        />
-                <img
-                            src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F2f31754d-624d-4541-9374-b0ade7738789%2Flarge.png&w=3840&q=100"
-                            alt="Car"
-                            className="w-1/3 rounded-md"
-                        />
+                    <img
+                        src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F1b2720c8-39ac-434c-9917-4fd450ebc664%2Flarge.png&w=3840&q=100"
+                        alt="Car"
+                        className="w-full rounded-lg shadow-md hover:scale-105 transition-transform"
+                    />
+                    <img
+                        src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F7c3de337-9297-42a1-a350-977a1a9d20a2%2Flarge.png&w=3840&q=100"
+                        alt="Car"
+                        className="w-full rounded-lg shadow-md hover:scale-105 transition-transform"
+                    />
+                    <img
+                        src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F2ba7ee84-0494-4249-bf4e-94befaa17854%2Flarge.png&w=3840&q=100"
+                        alt="Car"
+                        className="w-full rounded-lg shadow-md hover:scale-105 transition-transform"
+                    />
+                    <img
+                        src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F896856af-855c-49b7-bf9e-e75e260df9e3%2Flarge.png&w=3840&q=100"
+                        alt="Car"
+                        className="w-full rounded-lg shadow-md hover:scale-105 transition-transform"
+                    />
+                    <img
+                        src="https://search.drivehub.com/_next/image?url=https%3A%2F%2Fdrivehubv3.s3-ap-southeast-1.amazonaws.com%2Fcars%2Fa03377b0-5d57-44c4-b3c4-cf92ca5d3a96%2Fphotos%2F2f31754d-624d-4541-9374-b0ade7738789%2Flarge.png&w=3840&q=100"
+                        alt="Car"
+                        className="w-full rounded-lg shadow-md hover:scale-105 transition-transform"
+                    />
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-6 w-full max-w-5xl mx-auto p-6">
+
+                <div className="flex flex-col lg:flex-row gap-6 w-full max-w-5xl mx-auto mt-16">
                 {/* Left Section */}
                 <div>
-                    <h2 className="text-lg font-semibold mb-4">ข้อมูลรถ</h2>
                     <div className="grid grid-cols-2 gap-4 text-gray-600">
                     <div className="flex items-center gap-2">
                     <svg width="26" height="26" viewBox="0 0 25 25" fill="none"  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 p-2"xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +110,7 @@ export default function Home() {
                     </div>
 
                     <div className="mt-6">
-                    <h3 className="font-medium mb-2">อุปกรณ์ความบันเทิง</h3>
+                    <h3 className="font-medium mb-2">อุปกรณ์อำนวยความสะดวก</h3>
                     <ul className="list-disc list-inside text-gray-600">
                         <li className="flex items-center space-x-2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,7 +183,7 @@ export default function Home() {
                     </ul>
                 </div>
                 <div className="mt-6">
-                    <h3 className="font-medium mb-2">อุปกรณ์ความบันเทิง</h3>
+                    <h3 className="font-medium mb-2">อุปกรณ์ภายใน</h3>
                     <ul className="list-disc list-inside text-gray-600">
                         <li className="flex items-center space-x-2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -191,6 +191,11 @@ export default function Home() {
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>กุญแจรีโมท</span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 2.458C14.0291 2.1536 13.0175 1.99916 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22.0008 10.9825 21.8464 9.97088 21.542 9" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                            <span>Push Start/Stop</span>
                         </li>
                         <li className="flex items-center space-x-2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -242,18 +247,18 @@ export default function Home() {
 
                 {/* Shop Info Section */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4"> ข้อมูลร้านค้า </h2>
+                    <h2 className="text-base  font-bold mb-4 mt-7"> ข้อมูลร้านเช่า </h2>
                     <p className="mb-2 flex items-start">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
-                        className="w-5 h-5 mr-2 text-blue-600"
+                        className="w-5 h-5 mr-2 text-blue-600 mt-3"
                         fill="currentColor"
                     >
                         <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z"/>
                     </svg>
                     <span className="flex flex-col">
-                        <span className="font-bold">เวลาทำการปกติ</span>
+                        <span className="font-bold mt-2">เวลาทำการปกติ</span>
                         <span>จันทร์-อาทิตย์ เวลาทำการ 08:00 - 20:00</span>
                     </span>
                     </p>
@@ -261,17 +266,17 @@ export default function Home() {
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
-                        className="w-5 h-5 mr-2 text-blue-600"
+                        className="w-5 h-5 mr-2 text-blue-600 -mt-10"
                         fill="currentColor">
                         <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z"/>
                     </svg>
                     <span className="flex flex-col">
-                        <span className="font-bold">ช่วงนอกเวลาทำการ</span>
+                        <span className="font-bold mt-2">ช่วงนอกเวลาทำการ</span>
                         <span>จันทร์-อาทิตย์ เวลาทำการ 00:00 - 07:59(ค่าบริการ ฿1,000/ทริป*)จันทร์-อาทิตย์ เวลาทำการ 20:00 - 23:59 <br/>
                             (ค่าบริการ ฿400/ทริป*)*ระบบคำนวณให้อัตโนมัติ</span>
                     </span>
                     </div>
-                    <p className="mb-2">
+                    <p className="mb-2 mt-5">
                         <strong>จุดรับรถ:</strong> พื้นที่รับส่ง
                                                 เซ็นทรัล ลาดพร้าว: ค่าส่ง-รับรถ 200 บาท (ต่อเที่ยว)<br/>
                                                 MRT ลาดพร้าว: ค่าส่ง-รับรถ 100 บาท (ต่อเที่ยว)<br/>
@@ -322,8 +327,8 @@ export default function Home() {
 
                 {/* Booking Conditions Section */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4">ข้อตกลงและเงื่อนไข</h2> <br/>
-                    <h2 className="text-xl font-bold mb-4 -mt-5">การจอง</h2>
+                    <h2 className="text-base font-bold mb-4">ข้อตกลงและเงื่อนไข</h2> <br/>
+                    <h2 className="text-base  font-bold mb-4 -mt-5">การจอง</h2>
                     <ul className="list-disc ml-6">
                     <li className="flex items-center space-x-2">
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -342,7 +347,7 @@ export default function Home() {
 
                 {/* Payment Section */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4">การชำระเงิน</h2>
+                    <h2 className="text-base  font-bold mb-4">การชำระเงิน</h2>
                     <p>
                         <span className='list-disc ml-11'> • ชำระค่าเช่าบางส่วนเมื่อทำการจองและชำระส่วนที่เหลือ ณ วันรับรถ</span> <br />
                         <span className='list-disc ml-11'> • ช่องทางการชำระเงินตอนรับรถ เงินสด, โอนเงิน</span> 
@@ -351,24 +356,28 @@ export default function Home() {
 
                 {/* Car Return Section */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4">การส่งคืนรถ</h2>
+                    <h2 className="text-base  font-bold mb-4">การส่งคืนรถ</h2>
                     <span className='list-disc ml-11'> • ชำระค่าเช่าบางส่วนเมื่อทำการจองและชำระส่วนที่เหลือ ณ วันรับรถ</span> <br/>
                     <span className='list-disc ml-11'> • ช่องทางการชำระเงินตอนรับรถ เงินสด, โอนเงิน</span>
                 </section>
 
                 {/* Required Documents Section */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4">เอกสารที่ต้องใช้</h2>
-                    <ul className="list-disc ml-6">
-                        <li>สำเนาบัตรประชาชน</li>
-                        <li>ใบขับขี่ที่ยังไม่หมดอายุ</li>
+                    <h2 className="text-base  font-bold mb-4">เอกสารที่ต้องใช้เช่ารถ</h2> <br/>
+                    <h2 className="text-base  mb-4 -mt-5">ใช้ในการรับรถและการจอง</h2> <br/>
+                    <h2 className="text-base  font-bold mb-4 -mt-5">บัตรประจำตัวประชาชน หรือหนังสือเดินทาง</h2> 
+                    <ul>
+                        <li className='ml-11'>• มีอายุมากกว่า 21 ปี</li>
+                        <li className='ml-11'>• วันหมดอายุไม่น้อยกว่า 6 เดือน</li>
                     </ul>
                 </section>
 
                 {/* Additional Notes Section */}
                 <section className="mb-8">
-                    <h2 className="text-xl font-bold mb-4">โน้ตเพิ่มเติม</h2>
-                    <p>อายุขั้นต่ำในการเช่า: 21 ปี</p>
+                    <h2 className="text-base  font-bold mb-4">ใบขับขี่</h2>
+                    <p className='ml-11'>• ได้รับอนุญาตมากกว่า 1 ปี</p>
+                    <p className='ml-11'>• วันหมดอายุไม่น้อยกว่า 6 เดือน</p>
+                    <p className='ml-11'>• ใบขับขี่สากลสำหรับชาวต่างชาติ (ครอบคลุมระยะเวลาการเช่ารถ)มีอายุมากกว่า 21 ปี</p>
                 </section>
             </div>
             <div>
