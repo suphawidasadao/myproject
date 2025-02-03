@@ -118,7 +118,7 @@ export default function Home() {
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>Android Auto</span>
-                            <span className="flex items-center space-x-2">
+                            <span className="flex items-center space-x-2 pl-[150px]">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 2.458C14.0291 2.1536 13.0175 1.99916 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22.0008 10.9825 21.8464 9.97088 21.542 9" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -132,7 +132,7 @@ export default function Home() {
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>Bluetooth</span>
-                            <span className="flex items-center space-x-2">
+                            <span className="flex items-center space-x-2 pl-[174px]">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 2.458C14.0291 2.1536 13.0175 1.99916 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22.0008 10.9825 21.8464 9.97088 21.542 9" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -151,7 +151,7 @@ export default function Home() {
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>ระบบช่วยเตือนเมื่ออยู่มุมอับสายตา</span>
-                            <span className="flex items-center space-x-2">
+                            <span className="flex items-center space-x-2 pl-[16px]">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 2.458C14.0291 2.1536 13.0175 1.99916 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22.0008 10.9825 21.8464 9.97088 21.542 9" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -165,7 +165,7 @@ export default function Home() {
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>ระบบเซ็นเซอร์ถอยหลัง</span>
-                            <span className="flex items-center space-x-2">
+                            <span className="flex items-center space-x-2 pl-[95px]">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 2.458C14.0291 2.1536 13.0175 1.99916 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22.0008 10.9825 21.8464 9.97088 21.542 9" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -191,11 +191,13 @@ export default function Home() {
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>กุญแจรีโมท</span>
+                            <span className=' flex items-center space-x-2 pl-[169px]'> 
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 2.458C14.0291 2.1536 13.0175 1.99916 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22.0008 10.9825 21.8464 9.97088 21.542 9" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M8.5 9.5L12 13L21 3" stroke="#0268D7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
-                            <span>Push Start/Stop</span>
+                            <span >Push Start/Stop</span>
+                            </span>
                         </li>
                         <li className="flex items-center space-x-2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -208,13 +210,13 @@ export default function Home() {
                 </div>
 
                  </div>
-                         <div className="bg-white p-6 rounded-2xl shadow-md w-full max-w-md mx-auto h-[360px]">
-                            <h2 className="text-lg font-semibold mb-4">รายละเอียด</h2>
+                            <div className="bg-white p-4 rounded-xl shadow-md w-full max-w-sm mx-auto h-[330px] ">
+                            <h2 className="text-base font-semibold mb-4">รายละเอียด</h2>
 
                             <div className="mb-4">
                                 <p className="flex justify-between">
-                                <span>ค่าเช่ารถ 2 วัน</span>
-                                <span className="font-semibold">฿2,300</span>
+                                <span className='text-base'>ค่าเช่ารถ 2 วัน</span>
+                                <span className="font-semibold text-base">฿2,300</span>
                                 </p>
                                 <ul className="ml-4 text-gray-600">
                                 <li>ราคาต่อวัน ฿1,150 × 2 วัน</li>
@@ -224,24 +226,24 @@ export default function Home() {
                             <div className="mb-4">
                                 <p className="flex justify-between">
                                 <span>ค่ารับ - ค่าส่ง</span>
-                                <span className="font-semibold">฿200</span>
+                                <span className="font-semibold text-base">฿200</span>
                                 </p>
-                                <ul className="ml-4 text-gray-600">
+                                <ul className="ml-4 text-gray-600 text-base">
                                 <li>ค่าส่งรถ ฿100, ค่ารับรถ ฿100</li>
                                 </ul>
                             </div>
 
                             <div className="mb-4 border-t pt-4">
-                                <p className="flex justify-between text-lg font-bold">
+                                <p className="flex justify-between text-base font-bold">
                                 <span>ราคารวมทั้งหมด</span>
                                 <span>฿2,500</span>
                                 </p>
                                 <p className="text-sm text-gray-600">ค่ามัดจำในวันรับรถ (ได้คืนในวันคืนรถ)</p>
                             </div>
 
-                <button className="bg-blue-500 text-white w-full py-3 rounded-lg font-semibold mt-4">
-                    เช่ารถคันนี้
-                </button>
+                            <button className="bg-blue-500 text-white w-full px-6 py-2 rounded-lg font-semibold mt-4 mx-auto block">
+                                เช่ารถคันนี้
+                            </button>
                 </div>
                 </div>
 
