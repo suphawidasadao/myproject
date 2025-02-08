@@ -1,266 +1,320 @@
 "use client";
 
 import Image from 'next/image';
+import Link from "next/link";
 import React, { useState } from "react";
 
-export default function Home() {
-    const [isHelpDropdownOpen, setIsHelpDropdownOpen] = useState(false);
-    const [isSignUpDropdownOpen, setIsSignUpDropdownOpen] = useState(false);
-    const [helpOptionSelected, setHelpOptionSelected] = useState(null);
-    const [signUpOptionSelected, setSignUpOptionSelected] = useState(null);
-
-    // เปิดเมนูเมื่อคลิกที่ "ความช่วยเหลือ" หรือ "สมัครสมาชิก"
-    const toggleHelpDropdown = () => {
-        setIsHelpDropdownOpen(!isHelpDropdownOpen);
-    };
-
-    const toggleSignUpDropdown = () => {
-        setIsSignUpDropdownOpen(!isSignUpDropdownOpen);
-    };
-
-    // เมื่อเลือกตัวเลือกใน dropdown จะทำการปิด dropdown
-    const handleHelpOptionClick = (option, e) => {
-        e.stopPropagation();
-        setHelpOptionSelected(option);
-        setIsHelpDropdownOpen(false);
-    };
-
-    const handleSignUpOptionClick = (option, e) => {
-        e.stopPropagation();
-        setSignUpOptionSelected(option);
-        setIsSignUpDropdownOpen(false);
-    };
-
-    // ปิด dropdown เมื่อคลิกที่พื้นที่อื่นบนหน้าจอ
-    const handleClickOutside = (e) => {
-        if (!e.target.closest('.dropdown')) {
-            setIsHelpDropdownOpen(false);
-            setIsSignUpDropdownOpen(false);
-        }
-    };
-
-    // เพิ่ม event listener เมื่อคลิกที่พื้นที่อื่น
-    React.useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
-
-        // ลบ event listener เมื่อคอมโพเนนต์ถูกทำลาย
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, []);
-
+export default function ProfileManagement() {
     const [birthdate, setBirthdate] = useState('');
     const [phone, setPhone] = useState('+66');
     const [email, setEmail] = useState('');
+    const [name, setName] = useState("Nalinn"); // ชื่อหลักที่แสดงในโปรไฟล์
+    const [tempName, setTempName] = useState(name); // ชื่อชั่วคราวที่ใช้แก้ไข
+    const [lastName, setLastName] = useState("Ruam");
+    const [isEditingEmail, setIsEditingEmail] = useState(false);
+    const [isEditingPhone, setIsEditingPhone] = useState(false);
 
-    const handleBirthdateChange = (e) => {
-        setBirthdate(e.target.value);
-    };
 
-    const handlePhoneChange = (e) => {
-        setPhone(e.target.value);
-    };
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+    
+    
+    const handleBirthdateChange = (e) => setBirthdate(e.target.value);
+    const handlePhoneChange = (e) => setPhone(e.target.value);
+    const handleEmailChange = (e) => setEmail(e.target.value);
+    const handleNameChange = (e) => setName(e.target.value);
+    const handleLastNameChange = (e) => setLastName(e.target.value);
+
+    const handleEditEmail = () => setIsEditingEmail(true);
+    const handleConfirmEmail = () => setIsEditingEmail(false);
+
+    const handleEditPhone = () => setIsEditingPhone(true);
+    const handleConfirmPhone = () => setIsEditingPhone(false);
+    
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false); // ใช้ state เพื่อเก็บสถานะของ Modal
+
+    
+
+  const handleDeleteAccount = () => {
+    // ทำการลบบัญชีที่นี่
+    alert("บัญชีถูกลบแล้ว!");
+    setShowDeleteModal(false); // ปิด Modal หลังจากลบบัญชี
+  };
+
+
+    const handleSave = () => {
+        alert("ข้อมูลโปรไฟล์ถูกบันทึกแล้ว!");
     };
 
     return (
-        <div className="relative">
-            {/* Navbar*/}
+        <div className="min-h-screen bg-gray-100">
+            {/* Navbar */}
             <nav className="bg-white border-b shadow-md py-3 w-full">
-                <div className="container mx-auto px-24">
-                    <div className="flex justify-between items-center">
-                        <Image
-                            src="/Logo.svg"
-                            alt="Logo"
-                            width={100}
-                            height={100}
-                            className="object-cover"
-                        />
-
-                        <ul className="flex space-x-4 items-center text-[10px]">
-                            {/* Dropdown 1 */}
-                            <li
-                                className="relative dropdown"
-                                onClick={toggleHelpDropdown}
-                            >
-                                <a href="#" className="flex items-center">
-                                    ความช่วยเหลือ
-                                    <svg
-                                        className={`w-3 h-3 ml-1 transition-transform ${isHelpDropdownOpen ? "rotate-180 text-red-500" : "text-blue-500"
-                                            }`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M22.586,5.929l-9.879,9.879a1.021,1.021,0,0,1-1.414,0L1.42,5.934.006,7.348l9.873,9.874a3.075,3.075,0,0,0,4.243,0L24,7.343Z" />
-                                    </svg>
-                                </a>
-                                {isHelpDropdownOpen && (
-                                    <ul className="absolute top-full left-0 mt-2 bg-white border rounded shadow-md z-10">
-                                        <li>
-                                            <a
-                                                href="#"
-                                                onClick={(e) => handleHelpOptionClick("ตัวเลือกที่ 1", e)}
-                                                className="block px-2 py-2 text-gray-700 hover:bg-gray-100 text-[10px]"
-                                            >
-                                                วิธีการจองรถ
-                                            </a>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-
-                            {/* Dropdown 2 */}
-                            <li
-                                className="relative dropdown"
-                                onClick={toggleSignUpDropdown}
-                            >
-                                <a href="#" className="flex items-center">
-                                    สมัครสมาชิก/ลงชื่อเข้าใช้
-                                    <svg
-                                        className={`w-3 h-3 ml-1 transition-transform ${isSignUpDropdownOpen ? "rotate-180 text-red-500" : "text-blue-500"
-                                            }`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M22.586,5.929l-9.879,9.879a1.021,1.021,0,0,1-1.414,0L1.42,5.934.006,7.348l9.873,9.874a3.075,3.075,0,0,0,4.243,0L24,7.343Z" />
-                                    </svg>
-                                </a>
-                                {isSignUpDropdownOpen && (
-                                    <ul className="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded shadow-md z-10">
-                                        <li>
-                                            <a
-                                                href="#"
-                                                onClick={(e) => handleSignUpOptionClick("สมัครสมาชิก", e)}
-                                                className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white text-[10px] rounded"
-                                            >
-                                                สมัครสมาชิก
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                onClick={(e) => handleSignUpOptionClick("ลงชื่อเข้าใช้", e)}
-                                                className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white text-[10px] rounded"
-                                            >
-                                                ลงชื่อเข้าใช้
-                                            </a>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-                        </ul>
+                <div className="container mx-auto px-6 flex justify-between items-center">
+                    <Image
+                        src="/Logo.svg"
+                        alt="Logo"
+                        width={120}
+                        height={40}
+                        className="object-cover"
+                    />
+                    <div className="text-sm text-gray-600 flex space-x-4">
+                        <a href="#" className="hover:text-blue-500">เข้าสู่ระบบ</a>
+                        <a href="#" className="hover:text-blue-500">สมัครสมาชิก</a>
+                        <span className="text-gray-400">|</span>
+                        <a href="tel:02-038-5222" className="hover:text-blue-500">02-038-5222</a>
                     </div>
                 </div>
             </nav>
 
-            <div className="min-h-screen bg-gray-100">
-                <div className="container mx-auto px-24 flex gap-4 py-8">
-                    {/* Sidebar */}
-                    <div className="w-60 bg-white p-6 rounded-lg shadow ">
-                        <nav>
-                            <div className="gap-4 mb-6 flex flex-col items-center">
-                                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-xl font-bold text-gray-600">
-                                    S
-                                </div>
-                                <h2 className="text-xl font-bold text-gray-700 text-center">SUPHAWIDA SADAO</h2>
-                            </div>
-                            <a
-                                href="#"
-                                className="block text-[10px] font-medium text-blue-600 bg-blue-50 py-2 px-4 rounded mb-2"
-                            >
-                                จัดการบัญชีโปรไฟล์
-                            </a>
-                            <a
-                                href="#"
-                                className="block text-[10px] font-medium text-blue-600 bg-blue-50 py-2 px-4 rounded mb-2"
-                            >
-                                การเช่ารถของฉัน
-                            </a>
-                            {/* Other links... */}
-                        </nav>
+            {/* Main Content */}
+            <div className="container mx-auto px-6 py-10 flex gap-6">
+                {/* Sidebar */}
+                <aside className="w-64 bg-white p-6 rounded-lg shadow">
+                    <div className="flex flex-col items-center mb-8">
+                        <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
+                            <Image
+                                src="/profile3.svg"
+                                alt="Profile"
+                                width={96}
+                                height={96}
+                                className="object-cover"
+                            />
+                        </div>
+                        <h2 className="text-lg font-semibold text-gray-800 text-center">{name}</h2>
                     </div>
+                    <Link href="/profilepage" className="block py-2 px-4 text-blue-600 bg-blue-50 rounded">
+                        จัดการบัญชีโปรไฟล์
+                    </Link>
+                    <Link href="/rentals" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">
+                        การเช่ารถของฉัน
+                    </Link>
+                    <Link href="/coupons" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">
+                        คูปองของฉัน
+                    </Link>
+                    <Link href="/notifications" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">
+                        การแจ้งเตือน
+                    </Link>
+                    <Link href="/logout" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">
+                        ออกจากระบบ
+                    </Link>
+                </aside>
 
-                    {/* Profile Section */}
-                    <div className="flex-1 bg-white p-6 rounded-lg shadow">
-                        {/* Profile Header */}
-
-                        {/* Profile Form */}
-                        <form className="flex flex-col gap-6">
-                            {/* Name */}
-                            <div>
-                                <label htmlFor="name" className="block text-sm text-gray-600">
-                                    ชื่อ :
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    value="SUPHAWIDA"
-                                    readOnly
-                                    className="mt-1 w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                {/* Main Profile Section */}
+                <div className="flex-1 space-y-6">
+                    {/* Profile Form */}
+                    <section className="bg-white p-6 rounded-lg shadow">
+                        <h1 className="text-lg font-semibold text-gray-800 mb-6">จัดการบัญชีโปรไฟล์</h1>
+                        <form className="space-y-6">
+                            <div className="flex items-center space-x-4 w-full">
+                                <Image
+                                    src="/profile3.svg"
+                                    alt="Profile"
+                                    width={100}
+                                    height={100}
+                                    className="w-24 h-24 rounded-full object-cover"
                                 />
+                                <div className="flex-1">
+                                    <label className="text-sm text-gray-600 mb-1">ชื่อแสดงบนโปรไฟล์ (30 ตัวอักษร)</label>
+                                    <input
+                                        type="text"
+                                        value={name}
+                                        onChange={handleNameChange}
+                                        className="w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    />
+                                </div>
                             </div>
 
                             {/* Last Name */}
                             <div>
-                                <label htmlFor="lastname" className="block text-sm text-gray-600">
-                                    นามสกุล :
-                                </label>
+                                <label className="block text-sm text-gray-600 mb-1">นามสกุล (ตามบัตรประชาชน)</label>
                                 <input
                                     type="text"
-                                    id="lastname"
-                                    value="SADAO"
-                                    readOnly
-                                    className="mt-1 w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    value={lastName}
+                                    onChange={handleLastNameChange}
+                                    className="w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
                             </div>
 
                             {/* Birthdate */}
                             <div>
-                                <label htmlFor="birthdate" className="block text-sm text-gray-600">
-                                    วันเกิด:
-                                </label>
+                                <label className="block text-sm text-gray-600 mb-1">วันเกิด (สิทธิพิเศษเฉพาะคุณ)</label>
                                 <input
                                     type="date"
-                                    id="birthdate"
                                     value={birthdate}
                                     onChange={handleBirthdateChange}
-                                    className="mt-1 w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                />
-                            </div>
-
-                            {/* Phone */}
-                            <div>
-                                <label htmlFor="phone" className="block text-sm text-gray-600">
-                                    เบอร์โทรศัพท์:
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    value={phone}
-                                    onChange={handlePhoneChange}
-                                    className="mt-1 w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="email" className="block text-sm text-gray-600">
-                                    อีเมล:
-                                </label>
-                                <input
-                                    type="eamil"
-                                    id="email"
-                                    value={email}
-                                    onChange={handleEmailChange}
-                                    className="mt-1 w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    className="w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
                             </div>
                         </form>
-                    </div>
+                    </section>
 
+                    {/* Email Section */}
+                    <section className="bg-white p-6 rounded-lg shadow">
+                        <label className="block text-sm text-gray-600 mb-1">อีเมล (เพื่อรับข้อมูลยืนยันการจอง)</label>
+                        {isEditingEmail ? (
+                            <div className="flex items-center space-x-4">
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                    className="w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                />
+                                <button
+                                    onClick={handleConfirmEmail}
+                                    className="text-sm text-green-600 hover:text-blue-600"
+                                >
+                                    ยืนยัน
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex justify-between">
+                                <span>{email || "ยังไม่ได้ระบุอีเมล"}</span>
+                                <button
+                                    onClick={handleEditEmail}
+                                    className="text-sm text-gray-600 hover:text-blue-600"
+                                >
+                                    แก้ไข
+                                </button>
+                            </div>
+                        )}
+                    </section>
+
+                    {/* Phone Number Section */}
+                    <section className="bg-white p-6 rounded-lg shadow">
+                        <label className="block text-sm text-gray-600 mb-1">เบอร์โทรศัพท์ (ใช้ติดต่อกับร้านเช่า)</label>
+                        {isEditingPhone ? (
+                            <div className="flex items-center space-x-4">
+                                <input
+                                    type="text"
+                                    value={phone}
+                                    onChange={handlePhoneChange}
+                                    className="w-full px-4 py-2 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                />
+                                <button
+                                    onClick={handleConfirmPhone}
+                                    className="text-sm text-green-600 hover:text-blue-600"
+                                >
+                                    ยืนยัน
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex justify-between">
+                                <span>{phone}</span>
+                                <button
+                                    onClick={handleEditPhone}
+                                    className="text-sm text-gray-600 hover:text-blue-600"
+                                >
+                                    แก้ไข
+                                </button>
+                            </div>
+                        )}
+                    </section>
+
+                      {/* Account Management Section */}
+                      <section className="bg-white p-6 rounded-lg shadow">
+                      <div className="relative">
+        <label className="block text-sm text-gray-600 mb-1">จัดการบัญชี</label>
+        <nav className="space-y-4 text-sm">
+          <label className="block text-sm text-gray-600 mb-1">ลบบัญชีผู้ใช้ของคุณ</label>
+
+          {/* Positioning the confirmation and edit options */}
+          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-end space-y-1">
+            {/* Delete button with hover effect */}
+            <button 
+              onClick={() => setShowModal(true)} 
+              className="cursor-pointer text-sm text-red-600 hover:text-red-800 focus:outline-none">
+              ลบ
+            </button>
+          </div>
+        </nav>
+    </div>
+
+   {/* Modal ยืนยันการลบบัญชี */}
+{showDeleteModal && (
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h3 className="text-lg text-gray-700">คุณแน่ใจว่าต้องการลบบัญชีใช่หรือไม่?</h3>
+      <div className="mt-4 flex justify-end space-x-4">
+        <button
+          onClick={() => setShowDeleteModal(false)} // ปิด Modal
+          className="text-sm text-gray-600 hover:text-gray-800 focus:outline-none"
+        >
+          ยกเลิก
+        </button>
+        <button
+          onClick={handleDeleteAccount} // ลบบัญชี
+          className="text-sm text-red-600 hover:text-red-800 focus:outline-none"
+        >
+          ยืนยัน
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+</section> 
+
+    <section className="bg-white p-6 rounded-lg shadow">
+      <div className="relative">
+        <label className="block text-sm text-gray-600 mb-1">จัดการบัญชี</label>
+        <nav className="space-y-4 text-sm">
+          <label className="block text-sm text-gray-600 mb-1">ลบบัญชีผู้ใช้ของคุณ</label>
+
+          {/* Positioning the confirmation and edit options */}
+          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-end space-y-1">
+            {/* Delete button with hover effect */}
+            <button
+              onClick={() => setShowDeleteModal(true)} // เปิด Modal เมื่อคลิกปุ่มลบ
+              className="cursor-pointer text-sm text-red-600 hover:text-red-800 focus:outline-none"
+            >
+              ลบ
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Modal ยืนยันการลบบัญชี */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="text-lg text-gray-700">คุณแน่ใจว่าต้องการลบบัญชีใช่หรือไม่?</h3>
+            <div className="mt-4 flex justify-end space-x-4">
+              <button
+                onClick={() => setShowDeleteModal(false)} // ปิด Modal เมื่อคลิกยกเลิก
+                className="text-sm text-gray-600 hover:text-gray-800 focus:outline-none"
+              >
+                ยกเลิก
+              </button>
+              <button
+                onClick={handleDeleteAccount} // ลบบัญชี
+                className="text-sm text-red-600 hover:text-red-800 focus:outline-none"
+              >
+                ยืนยัน
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  
+
+
+
+
+                    {/* Save Button */}
+                    <section className="bg-white p-6 rounded-lg shadow">
+                        <div className="text-right">
+                            <button
+                                type="button"
+                                onClick={handleSave}
+                                className="w-full px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                บันทึกข้อมูล
+                            </button>
+                        </div>
+                    </section>
                 </div>
             </div>
-
         </div>
-
     );
 }
