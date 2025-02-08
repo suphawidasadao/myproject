@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -241,9 +242,11 @@ export default function Home() {
                                 <p className="text-sm text-gray-600">ค่ามัดจำในวันรับรถ (ได้คืนในวันคืนรถ)</p>
                             </div>
 
-                            <button className="bg-blue-500 text-white w-full px-6 py-2 rounded-lg font-semibold mt-4 mx-auto block">
-                                เช่ารถคันนี้
-                            </button>
+                            <Link href="/rent_carpage2">
+                                <button className="bg-blue-500 text-white w-full px-6 py-2 rounded-lg font-semibold mt-4 mx-auto block text-center hover:bg-blue-600 transition text-sm">
+                                    เช่ารถคันนี้
+                                </button>
+                            </Link>
                 </div>
                 </div>
 
