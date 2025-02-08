@@ -1,20 +1,26 @@
 "use client";
- 
+
 import Image from 'next/image';
 import React, { useState } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
- 
+import Link from 'next/link';
+
 export default function Home() {
- 
+    const [isBooked, setIsBooked] = useState(false); // สร้าง state สำหรับเช็คการจอง
+
+    const handleBooking = () => {
+        setIsBooked(true); // เมื่อกดปุ่มจะเปลี่ยน state เป็น true
+    };
+
     return (
         <div className="relative">
             {/* Navbar */}
             <div>
                 <Navbar/>
             </div>
- 
-              {/* Main Content */}
+
+            {/* Main Content */}
             <div className="container mx-auto px-24 mt-4 flex gap-4">
                 {/* Summary Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-1/2">
@@ -83,69 +89,101 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
- 
+
                 <div className="bg-white p-6 rounded-lg shadow-lg w-full mx-auto flex-1 h-[610px]">
-                <h3 className="text-lg font-bold mb-4 text-gray-800">สรุปรายการชำระทั้งหมด</h3>
- 
-                {/* ชำระในวันรับรถ */}
-                <div className="mb-6">
-                    <h4 className="font-semibold text-blue-600 mb-3 text-sm">ชำระในวันรับรถ</h4>
-                    <ul className="text-sm text-gray-600 space-y-2">
-                    <li className="flex justify-between font-semibold text-sm text-gray-800 border-t border-dashed pt-3 mt-3">
-                    <span> ค่าเช่ารถ 2 วัน</span>
-                            <span>฿2,398</span>
-                        </li>
-                        <span className='text-[12px]'> ราคาต่อวัน ฿1,199 x 2วัน</span>
-                        <li className="flex justify-between font-semibold text-sm text-gray-800">
-                            <span>ค่ารับ - ค่าส่ง</span>
-                            <span>฿400</span>
-                        </li>
-                        <span className='text-[12px]'> ราคาต่อวัน ฿1,199 x 2วัน</span>
-                    </ul>
-                    <div className="flex justify-between font-semibold mt-2 text-sm text-gray-800">
-                        <span>Total</span>
-                        <span>฿2,798</span>
+                    <h3 className="text-lg font-bold mb-4 text-gray-800">สรุปรายการชำระทั้งหมด</h3>
+
+                    {/* ชำระในวันรับรถ */}
+                    <div className="mb-6">
+                        <h4 className="font-semibold text-blue-600 mb-3 text-sm">ชำระในวันรับรถ</h4>
+                        <ul className="text-sm text-gray-600 space-y-2">
+                        <li className="flex justify-between font-semibold text-sm text-gray-800 border-t border-dashed pt-3 mt-3">
+                        <span> ค่าเช่ารถ 2 วัน</span>
+                                <span>฿2,398</span>
+                            </li>
+                            <span className='text-[12px]'> ราคาต่อวัน ฿1,199 x 2วัน</span>
+                            <li className="flex justify-between font-semibold text-sm text-gray-800">
+                                <span>ค่ารับ - ค่าส่ง</span>
+                                <span>฿400</span>
+                            </li>
+                            <span className='text-[12px]'> ราคาต่อวัน ฿1,199 x 2วัน</span>
+                        </ul>
+                        <div className="flex justify-between font-semibold mt-2 text-sm text-gray-800">
+                            <span>Total</span>
+                            <span>฿2,798</span>
+                        </div>
                     </div>
-                </div>
- 
-                {/* ค่ามัดจำ */}
-                <div className="mb-6">
-                    <h4 className="flex justify-between font-semibold text-sm text-blue-600 border-t border-dashed pt-3 mt-3">
-                    <span>ค่ามัดจำ</span>
-                    <span className='text-black'>฿3,000</span>
-                    </h4>
-                    <p className="text-[12px] text-gray-600 mb-3 ">
-                        ได้รับคืนในวันคืนรถตามเงื่อนไขของบริษัทกำหนด
-                    </p>
-                    <div className="flex justify-between font-bold text-sm text-gray-800 border-t border-dashed pt-3 mt-3">
-                        <span>Total</span>
-                        <span>฿3,000</span>
+
+                    {/* ค่ามัดจำ */}
+                    <div className="mb-6">
+                        <h4 className="flex justify-between font-semibold text-sm text-blue-600 border-t border-dashed pt-3 mt-3">
+                        <span>ค่ามัดจำ</span>
+                        <span className='text-black'>฿3,000</span>
+                        </h4>
+                        <p className="text-[12px] text-gray-600 mb-3 ">
+                            ได้รับคืนในวันคืนรถตามเงื่อนไขของบริษัทกำหนด
+                        </p>
+                        <div className="flex justify-between font-bold text-sm text-gray-800 border-t border-dashed pt-3 mt-3">
+                            <span>Total</span>
+                            <span>฿3,000</span>
+                        </div>
                     </div>
-                </div>
- 
-                {/* ที่ต้องชำระตอนนี้ */}
-                <div className="mb-6">
-                    <h4 className="font-semibold text-sm text-blue-600 mb-3">ที่ต้องชำระตอนนี้</h4>
-                    <div className="flex justify-between font-bold text-green-600 text-sm border-t border-dashed pt-3 mt-3">
-                        <span>ชำระตอนนี้</span>
-                        <span>฿0</span>
+
+                    {/* ที่ต้องชำระตอนนี้ */}
+                    <div className="mb-6">
+                        <h4 className="font-semibold text-sm text-blue-600 mb-3">ที่ต้องชำระตอนนี้</h4>
+                        <div className="flex justify-between font-bold text-green-600 text-sm border-t border-dashed pt-3 mt-3">
+                            <span>Total</span>
+                            <span>฿2,798</span>
+                        </div>
                     </div>
-                </div>
- 
-                {/* Confirm Button */}
-                <button
-                    type="button"
-                    className="w-full bg-blue-500 text-white py-2 rounded-md text-center font-medium hover:bg-blue-600 transition text-sm"
-                >
-                    ยืนยันข้อมูลเพื่อเช่ารถ
-                </button>
+
+                    {/* Confirm Button */}
+                    <button
+                        type="button"
+                        className="w-full bg-blue-500 text-white py-2 rounded-md text-center font-medium hover:bg-blue-600 transition text-sm"
+                        onClick={handleBooking} // เมื่อกดปุ่มจะเรียกฟังก์ชัน handleBooking
+                    >
+                        ยืนยันข้อมูลเพื่อเช่ารถ
+                    </button>
+
+                    {/* แสดงข้อความเมื่อทำการจองสำเร็จ */}
+                    {isBooked && (
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="bg-white p-12 rounded-lg shadow-2xl transform scale-110 transition-all duration-500 relative">
+            {/* Close Button (กากะบาท) */}
+            <button
+                onClick={() => setIsBooked(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" width="24" height="24" className="text-gray-600 hover:text-red-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div className="flex items-center justify-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="70" height="70" className="text-green-500 animate-bounce">
+                    <path d="M173.9 439.4l-98.8-98.8c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L173.9 439.4z" />
+                </svg>
             </div>
+            <p className="text-3xl font-semibold text-green-500 mb-4">ทำการจองสำเร็จ!</p>
+            <p className="text-lg text-gray-600 mb-6">ขอบคุณที่ใช้บริการของเรา</p>
+            
+            <Link href="/rentals">
+                                <button className="bg-blue-500 text-white w-full px-6 py-2 rounded-lg font-semibold mt-4 mx-auto block text-center hover:bg-blue-600 transition text-sm">
+                                    เช่ารถคันนี้
+                                </button>
+                            </Link>
+                </div>
             </div>
-           
+        )}
+
+
+                </div>
+            </div>
+
             <div className='mt-10'>
                 <Footer/>
             </div>
         </div>
     );
 }
- 
