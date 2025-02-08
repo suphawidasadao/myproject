@@ -90,8 +90,7 @@ export default function ProfileManagement() {
                         </Link>
                 </aside>
 
-                {/* Main Profile Section */}
-                <div className="flex-1 space-y-6">
+
                 {/* Main Panel */}
                 <div className="flex-1 bg-white p-6 rounded-lg shadow">
                     <h1 className="text-xl font-bold text-gray-800 mb-6">การเช่ารถของฉัน</h1>
@@ -106,7 +105,6 @@ export default function ProfileManagement() {
                         <p className="text-gray-600">คุณยังไม่มีรายการจอง</p>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     );
