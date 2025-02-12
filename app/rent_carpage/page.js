@@ -4,10 +4,28 @@ import Image from 'next/image';
 import React, { useState } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import Link from 'next/link';
  
 export default function Home() {
- 
- 
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        usage: "",
+        details: "",
+        contactFromAbroad: false
+    });
+
+    const isFormValid = formData.firstName && formData.lastName && formData.email && formData.phone;
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === "checkbox" ? checked : value
+        });
+    };
     return (
         <div className="relative">
             {/* Navbar */}
@@ -87,63 +105,89 @@ export default function Home() {
                 {/* Form Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-full h-[420px]">
                     <h3 className="text-base font-bold mb-4 text-gray-800">กรอกข้อมูล</h3>
- 
-                    {/* ข้อความข้อมูลผู้ขับขี่ */}
-                    <div className="mb-4 text-xs text-gray-600">
-                        <p>ข้อมูลผู้ขับขี่ (ชื่อผู้ขับขี่ต้องเป็นชื่อเดียวกับผู้ที่มารับรถ)</p>
-                    </div>
- 
+
                     <form className="flex flex-col gap-4">
                         <input
                             type="text"
+                            name="firstName"
                             placeholder="ชื่อจริง"
+                            value={formData.firstName}
+                            onChange={handleChange}
                             className="p-2 border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
                         />
                         <input
                             type="text"
+                            name="lastName"
                             placeholder="นามสกุล"
+                            value={formData.lastName}
+                            onChange={handleChange}
                             className="p-2 border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
                         />
                         <input
                             type="email"
+                            name="email"
                             placeholder="อีเมล (สำหรับติดต่อสอบถาม)"
+                            value={formData.email}
+                            onChange={handleChange}
                             className="p-2 border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
                         />
                         <input
                             type="text"
+                            name="phone"
                             placeholder="เบอร์โทรศัพท์"
+                            value={formData.phone}
+                            onChange={handleChange}
                             className="p-2 border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
                         />
                         <input
                             type="text"
+                            name="usage"
                             placeholder="การใช้งานของคุณ"
+                            value={formData.usage}
+                            onChange={handleChange}
                             className="p-2 border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <input
                             type="text"
+                            name="details"
                             placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)"
+                            value={formData.details}
+                            onChange={handleChange}
                             className="p-2 border rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        <label className="flex items-center gap-2 text-xs ">
-                            <input type="checkbox" className="w-4 h-4 " />
+                        <label className="flex items-center gap-2 text-xs">
+                            <input
+                                type="checkbox"
+                                name="contactFromAbroad"
+                                checked={formData.contactFromAbroad}
+                                onChange={handleChange}
+                                className="w-4 h-4"
+                            />
                             ติดต่อเรื่องรถจากต่างประเทศ
                         </label>
                     </form>
                 </div>
             </div>
+            {/* ปุ่มยืนยัน */}
             <div className="bg-white border p-4 rounded-md shadow-md mt-[-260px] w-[555px] ml-[465px]">
                 <p className="text-center text-black mb-4 text-xs">
                     กรุณาตรวจสอบข้อมูลการเช่าให้ครบถ้วนก่อนการกดยืนยัน
                 </p>
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white text-xs p-2 rounded-md hover:bg-blue-600 w-full block mx-auto">
-                    ยืนยันข้อมูล
-                </button>
+                <Link href={isFormValid ? "/rent_carpage2" : "#"} passHref>
+                    <button
+                        type="submit"
+                        className={`text-xs p-2 rounded-md w-full block mx-auto ${
+                            isFormValid ? "bg-blue-500 text-white hover:bg-blue-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        }`}
+                        disabled={!isFormValid}
+                    >
+                        ยืนยันข้อมูล
+                    </button>
+                </Link>
             </div>
  
             <div className='mt-48'>
