@@ -49,30 +49,32 @@ export default function ProfileManagement() {
 
       {/* Main Content */}
       <div className="container mx-auto px-24 py-10 flex gap-6">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white p-6 rounded-lg shadow">
-          <div className="flex flex-col items-center mb-8">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
-              <Image
-                src="/profile3.svg"
-                alt="Profile"
-                width={96}
-                height={96}
-                className="object-cover"
-              />
-            </div>
-            <h2 className="text-lg font-semibold text-gray-800 text-center">{name}</h2>
-          </div>
-          <Link href="/profilepage" className="block py-2 px-4 text-blue-600 bg-blue-50 rounded">
-            จัดการบัญชีโปรไฟล์
-          </Link>
-          <Link href="/rentals" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">
-            การเช่ารถของฉัน
-          </Link>
-          <a href="#" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">คูปองของฉัน</a>
-          <a href="#" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">การแจ้งเตือน</a>
-          <a href="#" className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded">ออกจากระบบ</a>
-        </aside>
+{/* Sidebar */}
+<aside className="w-64 sm:w-48 bg-white p-4 rounded-lg shadow text-sm">
+  <div className="flex flex-col items-center mb-6">
+    <div className="w-20 h-20 rounded-full overflow-hidden mb-3">
+      <Image
+        src="/profile3.svg"
+        alt="Profile"
+        width={80}
+        height={80}
+        className="object-cover"
+      />
+    </div>
+    <h2 className="font-semibold text-gray-800 text-center">{name}</h2>
+  </div>
+  <Link href="/profilepage" className="block py-2 px-3 text-blue-600 bg-blue-50 rounded">
+    จัดการบัญชีโปรไฟล์
+  </Link>
+  <Link href="/rentals" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">
+    การเช่ารถของฉัน
+  </Link>
+  <a href="#" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">คูปองของฉัน</a>
+  <a href="#" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">การแจ้งเตือน</a>
+  <a href="#" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">ออกจากระบบ</a>
+</aside>
+
+
 
         {/* Main Profile Section */}
         <div className="flex-1 space-y-6">
