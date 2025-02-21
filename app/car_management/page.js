@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import React from "react";
+import Link from "next/link";
 
 export default function CarManagement() {
   const cars = [
     { name: "Toyota Vios", type: "Sedan", price: 1700, status: "Available" },
     { name: "Honda Civic", type: "Sedan", price: 1900, status: "Available" },
-    { name: "Honda Civic", type: "Sedan", price: 1900, status: "Booked" },
-    { name: "Honda Civic", type: "Sedan", price: 1900, status: "Booked" },
+    { name: "Honda Accord", type: "Sedan", price: 2200, status: "Booked" },
+    { name: "Ford Ranger", type: "Truck", price: 2500, status: "Booked" },
   ];
 
   return (
@@ -18,9 +17,15 @@ export default function CarManagement() {
       <div className="w-64 bg-blue-700 text-white p-6 space-y-4 min-h-screen">
         <h2 className="text-2xl font-bold">MyCarRent</h2>
         <nav className="space-y-2">
-          <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Overview</p>
-          <p className="p-2 bg-blue-500 rounded">Car Management</p>
-          <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Booking Management</p>
+          <Link href="/Overview">
+            <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Overview</p>
+          </Link>
+          <Link href="/car_management">
+            <p className="p-2 bg-blue-500 rounded">Car Management</p>
+          </Link>
+          <Link href="/Booking">
+            <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Booking Management</p>
+          </Link>
         </nav>
       </div>
 
@@ -50,14 +55,8 @@ export default function CarManagement() {
                   <td className="p-2">{car.name}</td>
                   <td className="p-2">{car.type}</td>
                   <td className="p-2">{car.price}</td>
-                  <td className="p-2">
-                    <span
-                      className={`px-2 py-1 rounded text-white ${
-                        car.status === "Available" ? "bg-green-500" : "bg-red-500"
-                      }`}
-                    >
-                      {car.status}
-                    </span>
+                  <td className={`p-2 ${car.status === "Available" ? "text-green-600" : "text-red-600"}`}>
+                    {car.status}
                   </td>
                   <td className="p-2 space-x-2">
                     <button className="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
