@@ -70,6 +70,7 @@ export default function BookingManagement() {
               ))}
             </tbody>
           </table>
+          
         </div>
         </div>
       </div>
