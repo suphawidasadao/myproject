@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [adminName] = useState("Admin");
@@ -22,16 +23,22 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="relative bg-gray-100 min-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-blue-700 text-white p-5">
+      <div className="w-64 bg-blue-700 text-white p-6 space-y-4 min-h-screen">
         <h2 className="text-2xl font-bold">MyCarRent</h2>
-        <ul className="mt-5 space-y-2">
-          <li className="p-2 bg-blue-800 rounded">Overview</li>
-          <li className="p-2 hover:bg-blue-600 cursor-pointer">Car Management</li>
-          <li className="p-2 hover:bg-blue-600 cursor-pointer">Booking Management</li>
-        </ul>
-      </aside>
+        <nav className="space-y-2">
+          <Link href="/Overview">
+            <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Overview</p>
+          </Link>
+          <Link href="/car_management">
+            <p className="p-2 bg-blue-500 rounded">Car Management</p>
+          </Link>
+          <Link href="/Booking">
+            <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Booking Management</p>
+          </Link>
+        </nav>
+      </div>
 
       {/* Main Content */}
       <div className="flex-1 p-6">
