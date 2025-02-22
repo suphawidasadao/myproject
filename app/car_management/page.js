@@ -133,7 +133,7 @@ export default function CarManagement() {
     <div className="relative bg-gray-100 min-h-screen flex">
       {/* Sidebar */}
       <div className="w-64 bg-blue-700 text-white p-6 space-y-4 min-h-screen">
-        <h2 className="text-2xl font-bold">MyCarRent</h2>
+        <h2 className="text-sm font-bold">MyCarRent</h2>
         <nav className="space-y-2">
           <Link href="/Overview">
             <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Overview</p>
@@ -149,7 +149,7 @@ export default function CarManagement() {
 
       {/* Main Content */}
       <div className="flex-1 p-6">
-        <h2 className="text-2xl font-bold mb-2">Car Management</h2>
+        <h2 className="text-sm font-bold mb-2">Car Management</h2>
         <p className="text-gray-600 mb-4">Manage the cars available for rent</p>
         <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4 hover:bg-blue-600">
           Add New Car
@@ -203,7 +203,7 @@ export default function CarManagement() {
             >
               &times;
             </button>
-            <h2 className="text-xl font-bold mb-4">{selectedCar.name} </h2>
+            <h2 className="text-sm font-bold mb-4">{selectedCar.name} </h2>
             <p><strong>Type:</strong> {selectedCar.type}</p>
             <p><strong>Price/Day:</strong> {selectedCar.price} THB</p>
             <p><strong>Status:</strong> {selectedCar.status}</p>
@@ -220,12 +220,6 @@ export default function CarManagement() {
                 <p><strong>Insurance Fee:</strong> {selectedCar.details.fees.insurance} THB</p>
               </div>
             )}
-            <button
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-              onClick={() => setSelectedCar(null)}
-            >
-              Close
-            </button>
           </div>
         </div>
       )}
