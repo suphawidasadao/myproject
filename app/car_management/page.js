@@ -5,129 +5,111 @@ import Link from "next/link";
 
 export default function CarManagement() {
   const [selectedCar, setSelectedCar] = useState(null);
+  const [cars, setCars] = useState([
+    { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+      { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+      { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+      { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+  ]);
 
-  const cars = [
-    { 
-        name: "Toyota Yaris ATIV 2023", 
-        type: "Sedan", 
-        price: 1150, 
-        status: "Available", 
-        details: {
-          doors: 4,
-          seats: 4,
-          transmission: "Automatic",
-          engine: "1200 cc",
-          fuel: "Petrol",
-          luggage: "2-3 bags",
-          interior: ["Remote Key", "Leather Seats"],
-          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
-          safety: [
-            "Cruise Control", 
-            "360-degree Camera", 
-            "Rear Sensor", 
-            "Lane Departure Warning", 
-            "Blind Spot Monitoring"
-          ],
-          fees: { delivery: 100, insurance: 100 }
-        }
-      },
-      { 
-        name: "Toyota Yaris ATIV 2023", 
-        type: "Sedan", 
-        price: 1150, 
-        status: "Available", 
-        details: {
-          doors: 4,
-          seats: 4,
-          transmission: "Automatic",
-          engine: "1200 cc",
-          fuel: "Petrol",
-          luggage: "2-3 bags",
-          interior: ["Remote Key", "Leather Seats"],
-          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
-          safety: [
-            "Cruise Control", 
-            "360-degree Camera", 
-            "Rear Sensor", 
-            "Lane Departure Warning", 
-            "Blind Spot Monitoring"
-          ],
-          fees: { delivery: 100, insurance: 100 }
-        }
-      },
-      { 
-        name: "Toyota Yaris ATIV 2023", 
-        type: "Sedan", 
-        price: 1150, 
-        status: "Available", 
-        details: {
-          doors: 4,
-          seats: 4,
-          transmission: "Automatic",
-          engine: "1200 cc",
-          fuel: "Petrol",
-          luggage: "2-3 bags",
-          interior: ["Remote Key", "Leather Seats"],
-          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
-          safety: [
-            "Cruise Control", 
-            "360-degree Camera", 
-            "Rear Sensor", 
-            "Lane Departure Warning", 
-            "Blind Spot Monitoring"
-          ],
-          fees: { delivery: 100, insurance: 100 }
-        }
-      },
-      { 
-        name: "Toyota Yaris ATIV 2023", 
-        type: "Sedan", 
-        price: 1150, 
-        status: "Available", 
-        details: {
-          doors: 4,
-          seats: 4,
-          transmission: "Automatic",
-          engine: "1200 cc",
-          fuel: "Petrol",
-          luggage: "2-3 bags",
-          interior: ["Remote Key", "Leather Seats"],
-          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
-          safety: [
-            "Cruise Control", 
-            "360-degree Camera", 
-            "Rear Sensor", 
-            "Lane Departure Warning", 
-            "Blind Spot Monitoring"
-          ],
-          fees: { delivery: 100, insurance: 100 }
-        }
-      },
-    { 
-      name: "Toyota Yaris ATIV 2023", 
-      type: "Sedan", 
-      price: 1150, 
-      status: "Available", 
-      details: {
-        doors: 4,
-        seats: 4,
-        transmission: "Automatic",
-        engine: "1200 cc",
-        fuel: "Petrol",
-        luggage: "2-3 bags",
-        interior: ["Remote Key", "Leather Seats"],
-        convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
-        safety: [
-          "Cruise Control", 
-          "360-degree Camera", 
-          "Rear Sensor", 
-          "Lane Departure Warning", 
-          "Blind Spot Monitoring"
-        ],
-        fees: { delivery: 100, insurance: 100 }
-      }
-    }
-  ];
+  // ฟังก์ชันสำหรับลบรถ
+  const handleDeleteCar = (index) => {
+    const newCars = [...cars]; // คัดลอกรายการ cars ออกมา
+    newCars.splice(index, 1); // ลบรถที่อยู่ใน index ที่เลือก
+    setCars(newCars); // อัพเดตสถานะ cars ใหม่
+  };
 
   return (
     <div className="relative bg-gray-100 min-h-screen flex">
@@ -178,7 +160,12 @@ export default function CarManagement() {
                   </td>
                   <td className="p-2 space-x-2">
                     <button className="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                    <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                    <button 
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                      onClick={() => handleDeleteCar(index)} // ลบตาม index
+                    >
+                      Delete
+                    </button>
                     <button 
                       className="bg-blue-500 text-white px-2 py-1 rounded"
                       onClick={() => setSelectedCar(car)}
