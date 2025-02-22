@@ -1,16 +1,134 @@
 "use client";
- 
-import React from "react";
+
+import React, { useState } from "react";
 import Link from "next/link";
- 
+
 export default function CarManagement() {
+  const [selectedCar, setSelectedCar] = useState(null);
+
   const cars = [
-    { name: "Toyota Vios", type: "Sedan", price: 1700, status: "Available" },
-    { name: "Honda Civic", type: "Sedan", price: 1900, status: "Available" },
-    { name: "Honda Accord", type: "Sedan", price: 2200, status: "Booked" },
-    { name: "Ford Ranger", type: "Truck", price: 2500, status: "Booked" },
+    { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+      { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+      { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+      { 
+        name: "Toyota Yaris ATIV 2023", 
+        type: "Sedan", 
+        price: 1150, 
+        status: "Available", 
+        details: {
+          doors: 4,
+          seats: 4,
+          transmission: "Automatic",
+          engine: "1200 cc",
+          fuel: "Petrol",
+          luggage: "2-3 bags",
+          interior: ["Remote Key", "Leather Seats"],
+          convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+          safety: [
+            "Cruise Control", 
+            "360-degree Camera", 
+            "Rear Sensor", 
+            "Lane Departure Warning", 
+            "Blind Spot Monitoring"
+          ],
+          fees: { delivery: 100, insurance: 100 }
+        }
+      },
+    { 
+      name: "Toyota Yaris ATIV 2023", 
+      type: "Sedan", 
+      price: 1150, 
+      status: "Available", 
+      details: {
+        doors: 4,
+        seats: 4,
+        transmission: "Automatic",
+        engine: "1200 cc",
+        fuel: "Petrol",
+        luggage: "2-3 bags",
+        interior: ["Remote Key", "Leather Seats"],
+        convenience: ["USB", "Bluetooth", "Android Auto", "Apple CarPlay"],
+        safety: [
+          "Cruise Control", 
+          "360-degree Camera", 
+          "Rear Sensor", 
+          "Lane Departure Warning", 
+          "Blind Spot Monitoring"
+        ],
+        fees: { delivery: 100, insurance: 100 }
+      }
+    }
   ];
- 
+
   return (
     <div className="relative bg-gray-100 min-h-screen flex">
       {/* Sidebar */}
@@ -28,7 +146,7 @@ export default function CarManagement() {
           </Link>
         </nav>
       </div>
- 
+
       {/* Main Content */}
       <div className="flex-1 p-6">
         <h2 className="text-2xl font-bold mb-2">Car Management</h2>
@@ -36,7 +154,7 @@ export default function CarManagement() {
         <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4 hover:bg-blue-600">
           Add New Car
         </button>
- 
+
         {/* Car List Table */}
         <div className="bg-white p-4 rounded-lg shadow-md">
           <table className="w-full border-collapse">
@@ -61,7 +179,12 @@ export default function CarManagement() {
                   <td className="p-2 space-x-2">
                     <button className="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                     <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                    <button className="bg-blue-500 text-white px-2 py-1 rounded">Details</button>
+                    <button 
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                      onClick={() => setSelectedCar(car)}
+                    >
+                      Details
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -69,6 +192,43 @@ export default function CarManagement() {
           </table>
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedCar && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-black"
+              onClick={() => setSelectedCar(null)}
+            >
+              &times;
+            </button>
+            <h2 className="text-xl font-bold mb-4">{selectedCar.name} </h2>
+            <p><strong>Type:</strong> {selectedCar.type}</p>
+            <p><strong>Price/Day:</strong> {selectedCar.price} THB</p>
+            <p><strong>Status:</strong> {selectedCar.status}</p>
+            {selectedCar.details && (
+              <div className="mt-4">
+                <p><strong>Engine:</strong> {selectedCar.details.engine}</p>
+                <p><strong>Fuel:</strong> {selectedCar.details.fuel}</p>
+                <p><strong>Transmission:</strong> {selectedCar.details.transmission}</p>
+                <p><strong>Luggage:</strong> {selectedCar.details.luggage}</p>
+                <p><strong>Interior:</strong> {selectedCar.details.interior.join(", ")}</p>
+                <p><strong>Convenience:</strong> {selectedCar.details.convenience.join(", ")}</p>
+                <p><strong>Safety:</strong> {selectedCar.details.safety.join(", ")}</p>
+                <p><strong>Delivery Fee:</strong> {selectedCar.details.fees.delivery} THB</p>
+                <p><strong>Insurance Fee:</strong> {selectedCar.details.fees.insurance} THB</p>
+              </div>
+            )}
+            <button
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              onClick={() => setSelectedCar(null)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
