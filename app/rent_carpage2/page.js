@@ -134,7 +134,7 @@ export default function Home() {
                         <h4 className="font-semibold text-xs text-blue-600 mb-3">ที่ต้องชำระตอนนี้</h4>
                         <div className="flex justify-between font-bold text-green-600 text-xs border-t border-dashed pt-3 mt-3">
                             <span>Total</span>
-                            <span>฿2,798</span>
+                            <span>฿0</span>
                         </div>
                     </div>
  
@@ -176,8 +176,6 @@ export default function Home() {
                 </div>
             </div>
         )}
- 
- 
                 </div>
             </div>
  
