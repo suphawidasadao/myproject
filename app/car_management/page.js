@@ -231,18 +231,160 @@ export default function CarManagement() {
           </div>
         </div>
       )}
-       {showForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative">
-            <button className="absolute top-2 right-2 text-gray-600 hover:text-black" onClick={() => setShowForm(false)}>&times;</button>
-            <h2 className="text-sm font-bold mb-4">Add New Car</h2>
-            <input type="text" placeholder="Car Name" className="w-full p-2 border mb-2" value={newCar.name} onChange={(e) => setNewCar({ ...newCar, name: e.target.value })} />
-            <input type="text" placeholder="Type" className="w-full p-2 border mb-2" value={newCar.type} onChange={(e) => setNewCar({ ...newCar, type: e.target.value })} />
-            <input type="number" placeholder="Price" className="w-full p-2 border mb-2" value={newCar.price} onChange={(e) => setNewCar({ ...newCar, price: e.target.value })} />
-            <button className="bg-blue-500 text-white px-4 py-2 rounded w-full mt-2" onClick={handleAddCar}>Add Car</button>
-          </div>
+      {showForm && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative max-h-[90vh] overflow-y-auto">
+      <button className="absolute top-2 right-2 text-gray-600 hover:text-black" onClick={() => setShowForm(false)}>&times;</button>
+      <h2 className="text-lg font-bold mb-4 text-center">เพิ่มรถใหม่ (Add New Car)</h2>
+
+      {/* Form Inputs */}
+      <div className="space-y-3">
+        <label className="block text-sm font-semibold">ชื่อรถ</label>
+        <input type="text" placeholder="ระบุชื่อรถ" className="w-full p-2 border rounded" value={newCar.name} onChange={(e) => setNewCar({ ...newCar, name: e.target.value })} />
+
+        <label className="block text-sm font-semibold">เลือกรูปรถ</label>
+        <input 
+        type="file" 
+        multiple 
+        accept="image/*" 
+        className="w-full p-2 border rounded hidden" 
+        id="carImages" 
+        onChange={(e) => {
+            const files = Array.from(e.target.files);
+            const imagePreviews = files.map(file => URL.createObjectURL(file));
+            setNewCar({ ...newCar, images: imagePreviews });
+        }} 
+        />
+
+        {/* ปุ่มเลือกไฟล์แบบเรียบๆ */}
+        <label 
+        htmlFor="carImages" 
+        className="block text-center py-2 border rounded cursor-pointer w-full"
+        >
+        Choose Files
+        </label>
+
+        {/* แสดงตัวอย่างรูป */}
+        <div className="flex flex-wrap gap-2 mt-2">
+        {newCar.images?.map((src, index) => (
+            <div key={index} className="relative w-24 h-24">
+            <img src={src} alt="Car Preview" className="w-full h-full object-cover rounded-lg" />
+            </div>
+        ))}
         </div>
-      )}
+
+        <label className="block text-sm font-semibold">ประเภท</label>
+        <select className="w-full p-2 border rounded" value={newCar.type} onChange={(e) => setNewCar({ ...newCar, type: e.target.value })}>
+          <option value="">-- เลือกประเภทรถ --</option>
+          <option value="Sedan">Sedan</option>
+          <option value="SUV">SUV</option>
+          <option value="Truck">Truck</option>
+          <option value="Van">Van</option>
+        </select>
+
+        <label className="block text-sm font-semibold">จำนวนที่นั่ง</label>
+        <input 
+        type="number" 
+        placeholder="ระบุจำนวนที่นั่ง" 
+        className="w-full p-2 border rounded" 
+        value={newCar.seats || ""} 
+        onChange={(e) => setNewCar({ ...newCar, seats: e.target.value })} 
+        />
+
+        <label className="block text-sm font-semibold">ระบบเกียร์</label>
+        <select className="w-full p-2 border rounded" value={newCar.transmission} onChange={(e) => setNewCar({ ...newCar, transmission: e.target.value })}>
+          <option value="">-- เลือกระบบเกียร์ --</option>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+        </select>
+
+        <label className="block text-sm font-semibold">ความจุเครื่องยนต์ (cc)</label>
+        <div className="relative">
+        <input 
+            type="text" 
+            placeholder="ระบุความจุเครื่องยนต์" 
+            className="w-full p-2 border rounded" 
+            value={newCar.engine || ""} 
+            onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) { 
+                setNewCar({ ...newCar, engine: value });
+            }
+            }} 
+        />
+        <span className="absolute right-3 top-2.5 text-gray-600">cc</span>
+        </div>
+
+        <label className="block text-sm font-semibold">อุปกรณ์อำนวยความสะดวก</label>
+        <input 
+        type="text" 
+        placeholder="เช่น Air Conditioning, GPS, Bluetooth" 
+        className="w-full p-2 border rounded" 
+        value={newCar.features || ""} 
+        onChange={(e) => setNewCar({ ...newCar, features: e.target.value })} 
+        />
+
+        <label className="block text-sm font-semibold">ระบบความปลอดภัย</label>
+        <input 
+        type="text" 
+        placeholder="เช่น ABS, Airbags, Traction Control" 
+        className="w-full p-2 border rounded" 
+        value={newCar.safety || ""} 
+        onChange={(e) => setNewCar({ ...newCar, safety: e.target.value })} 
+        />
+
+        <label className="block text-sm font-semibold">พื้นที่รับ-ส่ง</label>
+        <input 
+        type="text" 
+        placeholder="ระบุพื้นที่รับและส่งรถ" 
+        className="w-full p-2 border rounded" 
+        value={newCar.pickupLocation || ""} 
+        onChange={(e) => setNewCar({ ...newCar, pickupLocation: e.target.value })} 
+        />
+
+        <label className="block text-sm font-semibold">ราคาต่อวัน (บาท)</label>
+        <div className="relative">
+            <input 
+                type="text" 
+                placeholder="ระบุราคาต่อวัน" 
+                className="w-full p-2 border rounded pr-10" 
+                value={newCar.price || ""} 
+                onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^\d*$/.test(value)) { 
+                        setNewCar({ ...newCar, price: value });
+                    }
+                }} 
+            />
+            <span className="absolute right-3 top-2 text-gray-500">บาท</span>
+        </div>
+
+        <label className="block text-sm font-semibold">ค่ารับ-ส่ง (บาท)</label>
+        <div className="relative">
+            <input 
+                type="text" 
+                placeholder="ระบุค่ารับส่ง" 
+                className="w-full p-2 border rounded pr-10" 
+                value={newCar.deliveryFee || ""} 
+                onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^\d*$/.test(value)) { 
+                        setNewCar({ ...newCar, deliveryFee: value });
+                    }
+                }} 
+            />
+            <span className="absolute right-3 top-2 text-gray-500">บาท</span>
+        </div>
+
+        {/* Submit Button */}
+        <button className="bg-green-500 text-white px-4 py-2 rounded w-full mt-2" onClick={handleAddCar}>
+          ลงรถให้เช่า
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
