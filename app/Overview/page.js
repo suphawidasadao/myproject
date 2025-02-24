@@ -29,10 +29,10 @@ export default function Dashboard() {
         <h2 className="text-2xl font-bold">MyCarRent</h2>
         <nav className="space-y-2">
           <Link href="/Overview">
-            <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Overview</p>
+            <p className="p-2 bg-blue-500 rounded">Overview</p>
           </Link>
           <Link href="/car_management">
-            <p className="p-2 bg-blue-500 rounded">Car Management</p>
+            <p className="p-2 hover:bg-blue-500 cursor-pointer">Car Management</p>
           </Link>
           <Link href="/Booking">
             <p className="p-2 rounded hover:bg-blue-500 cursor-pointer">Booking Management</p>
