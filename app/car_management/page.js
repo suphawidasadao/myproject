@@ -198,12 +198,12 @@ export default function CarManagement() {
       {selectedCar && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative">
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-black"
-              onClick={() => setSelectedCar(null)}
+          <span 
+              onClick={() => setSelectedCar(null)} 
+              className="absolute top-2 right-2 text-gray-600 hover:text-black text-3xl cursor-pointer"
             >
               &times;
-            </button>
+            </span>
             <h2 className="text-sm font-bold mb-4">{selectedCar.name}</h2>
             <p><strong>Type:</strong> {selectedCar.type}</p>
             <p><strong>Price/Day:</strong> {selectedCar.price} THB</p>
@@ -234,7 +234,7 @@ export default function CarManagement() {
       {showForm && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative max-h-[90vh] overflow-y-auto">
-      <button className="absolute top-2 right-2 text-gray-600 hover:text-black" onClick={() => setShowForm(false)}>&times;</button>
+      <button className="absolute top-2 right-2 text-gray-600 hover:text-black text-3xl cursor-pointer" onClick={() => setShowForm(false)}>&times;</button>
       <h2 className="text-lg font-bold mb-4 text-center">เพิ่มรถใหม่ (Add New Car)</h2>
 
       {/* Form Inputs */}
