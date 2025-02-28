@@ -81,10 +81,10 @@ function EditPostPage({ params }) {
     const handleImageChange = (e) => {
         const selectedImages = Array.from(e.target.files);
         const imageUrls = selectedImages.map((file) =>
-          URL.createObjectURL(file)
+            URL.createObjectURL(file)
         );
         setNewImages(imageUrls); // เก็บภาพใหม่
-      };
+    };
 
     return (
         <div className="relative bg-gray-100 min-h-screen flex">
@@ -120,38 +120,39 @@ function EditPostPage({ params }) {
                             className="w-full p-2 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
-                        {/* เลือกรูปรถ */}
-                        <label className="block text-sm font-medium">เลือกรูปรถ</label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                            multiple
-                            required
-                            id="car-images"
-                            className="hidden"
-                        />
-                        <label
-                            htmlFor="car-images"
-                            className="w-24 cursor-pointer text-center rounded border-2 border-gray-500 px-3 py-2 text-xs bg-gray-300 hover:bg-gray-500"
-                        >
-                            Choose File
-                        </label>
-                        {newimages.length > 0 && (
+                        {postData?.images?.length > 0 && (
                             <div className="mt-4 flex gap-4 flex-wrap">
-                                {newimages.map((newimage, index) => (
-                                    <div key={index} className="">
+                                {postData.images.map((image, index) => (
+                                    <div key={index} className="relative">
                                         <Image
-                                            src={newimage}
-                                            alt={`Selected Car ${index}`}
-                                            width={200}  // ระบุขนาดที่ต้องการ (เช่น 96px)
-                                            height={200} // ระบุขนาดที่ต้องการ (เช่น 96px)
+                                            src={image}  // ใช้ URL รูปเก่าจากฐานข้อมูล
+                                            alt={`Old Car Image ${index}`}
+                                            width={200}
+                                            height={200}
                                             className="object-cover rounded"
                                         />
                                     </div>
                                 ))}
                             </div>
                         )}
+
+                        {/* รูปใหม่ */}
+                        {newimages.length > 0 && (
+                            <div className="mt-4 flex gap-4 flex-wrap">
+                                {newimages.map((newimage, index) => (
+                                    <div key={index} className="relative">
+                                        <Image
+                                            src={newimage}  // ใช้ URL รูปใหม่ที่ถูกเลือก
+                                            alt={`New Car Image ${index}`}
+                                            width={200}
+                                            height={200}
+                                            className="object-cover rounded"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
 
                         {/* ประเภทรถ */}
                         <label className="block text-sm font-medium">ประเภท</label>
