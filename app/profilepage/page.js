@@ -1,25 +1,31 @@
-"use client";
+"use client"
 
-import Image from 'next/image';
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
-import React, { useState } from "react";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import React, { useState, useEffect } from "react";
+import { signOut } from 'next-auth/react';
 
-export default function ProfileManagement() {
-  const [birthdate, setBirthdate] = useState('');
-  const [phone, setPhone] = useState('+66');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState("Nalinn"); // ชื่อจริงที่แสดงในโปรไฟล์
-  const [tempName, setTempName] = useState(name); // ชื่อชั่วคราวที่ใช้แก้ไข
-  const [lastName, setLastName] = useState("Ruam");
+const Profile = () => {
+  const { data: session } = useSession();
+  console.log(session);
+
+  if (!session) redirect("/")
+
+  const [email, setEmail] = useState(session?.user?.email || "");  // Initialize with fallback value
+  const [phone, setPhone] = useState(session?.user?.phone || '+66'); // Initialize with fallback value
+  const [tempName, setTempName] = useState(session?.user?.name || ""); // Initialize with fallback value
+  const [lastName, setLastName] = useState(session?.user?.lastname || ""); // Initialize with fallback value
+
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [isEditingPhone, setIsEditingPhone] = useState(false);
 
-  const handleBirthdateChange = (e) => setBirthdate(e.target.value);
   const handlePhoneChange = (e) => setPhone(e.target.value);
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handleNameChange = (e) => setTempName(e.target.value); // แก้ไข tempName แทน name
+  const handleNameChange = (e) => setTempName(e.target.value); // Update tempName for name changes
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
   const handleEditEmail = () => setIsEditingEmail(true);
@@ -28,53 +34,58 @@ export default function ProfileManagement() {
   const handleEditPhone = () => setIsEditingPhone(true);
   const handleConfirmPhone = () => setIsEditingPhone(false);
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // ใช้ state เพื่อเก็บสถานะของ Modal
-
-  const handleDeleteAccount = () => {
-    // ทำการลบบัญชีที่นี่
-    alert("บัญชีถูกลบแล้ว!");
-    setShowDeleteModal(false); // ปิด Modal หลังจากลบบัญชี
-  };
-
-  const handleSave = () => {
-    setName(tempName); // เมื่อบันทึกแล้วให้ update ชื่อจริง
-    alert("ข้อมูลโปรไฟล์ถูกบันทึกแล้ว!");
-  };
-
   return (
     <div className="relative">
-      <div>
-        <Navbar />
-      </div>
+      <Navbar session={session} />
+      {/* Breadcrumb navigation */}
+      <ul className="container mx-auto px-24 flex items-center space-x-2 mt-5 text-sm text-gray-500">
+        <li>
+          <Link href="/" className="hover:text-blue-600">
+            หน้าแรก
+          </Link>
+        </li>
+        <li>&gt;</li>
+        <li>
+          <Link href="/profilepage" className="text-blue-600">
+            โปรไฟล์
+          </Link>
+        </li>
+      </ul>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-24 py-10 flex gap-6">
-{/* Sidebar */}
-<aside className="w-64 sm:w-48 bg-white p-4 rounded-lg shadow text-sm">
-  <div className="flex flex-col items-center mb-6">
-    <div className="w-20 h-20 rounded-full overflow-hidden mb-3">
-      <Image
-        src="/profile3.svg"
-        alt="Profile"
-        width={80}
-        height={80}
-        className="object-cover"
-      />
-    </div>
-    <h2 className="font-semibold text-gray-800 text-center">{name}</h2>
-  </div>
-  <Link href="/profilepage" className="block py-2 px-3 text-blue-600 bg-blue-50 rounded">
-    จัดการบัญชีโปรไฟล์
-  </Link>
-  <Link href="/rentals" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">
-    การเช่ารถของฉัน
-  </Link>
-  <a href="#" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">คูปองของฉัน</a>
-  <a href="#" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">การแจ้งเตือน</a>
-  <a href="#" className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded">ออกจากระบบ</a>
-</aside>
-
-
+      <div className="container mx-auto px-24 py-4 flex gap-6">
+        {/* Sidebar */}
+        <aside className="w-64 sm:w-48 bg-white p-4 rounded-lg shadow text-sm">
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-20 h-20 rounded-full overflow-hidden mb-3">
+              <Image
+                src="/profile3.svg"
+                alt="Profile"
+                width={80}
+                height={80}
+                className="object-cover"
+              />
+            </div>
+            <h2 className="font-semibold text-gray-800 text-center">{session?.user?.name}</h2>
+          </div>
+          <Link
+            href="/profilepage"
+            className="block py-2 px-3 text-blue-600 bg-blue-50 rounded w-full"
+          >
+            จัดการบัญชีโปรไฟล์
+          </Link>
+          <Link
+            href="/rentals"
+            className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded w-full"
+          >
+            การเช่ารถของฉัน
+          </Link>
+          <button
+            onClick={() => signOut({ redirect: true, callbackUrl: '/' })}
+            className="py-2 px-3 text-gray-600 hover:bg-gray-100 rounded w-full flex "
+          >
+            ออกจากระบบ
+          </button>
+        </aside>
 
         {/* Main Profile Section */}
         <div className="flex-1 space-y-6">
@@ -94,7 +105,7 @@ export default function ProfileManagement() {
                   <label className="text-xs text-gray-600 mb-1">ชื่อแสดงบนโปรไฟล์ (30 ตัวอักษร)</label>
                   <input
                     type="text"
-                    value={tempName} // ใช้ tempName ในการแสดงผล
+                    value={tempName}
                     onChange={handleNameChange}
                     className="w-full px-4 py-2 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
@@ -107,7 +118,7 @@ export default function ProfileManagement() {
                 </label>
                 <input
                   type="text"
-                  value={name}
+                  value={session?.user?.firstname || ""}
                   onChange={handleNameChange}
                   className="w-full px-4 py-2 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
@@ -119,17 +130,6 @@ export default function ProfileManagement() {
                   type="text"
                   value={lastName}
                   onChange={handleLastNameChange}
-                  className="w-full px-4 py-2 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
-
-              {/* Birthdate */}
-              <div>
-                <label className="block text-xs text-gray-600 mb-1">วันเกิด (สิทธิพิเศษเฉพาะคุณ)</label>
-                <input
-                  type="date"
-                  value={birthdate}
-                  onChange={handleBirthdateChange}
                   className="w-full px-4 py-2 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
@@ -197,65 +197,12 @@ export default function ProfileManagement() {
               </div>
             )}
           </section>
-
-          {/* Account Management Section */}
-          <section className="bg-white p-6 rounded-lg shadow">
-            <div className="relative">
-              <label className="block text-xs text-gray-600 mb-1">จัดการบัญชี</label>
-              <nav className="space-y-4 text-xs">
-                <label className="block text-xs text-gray-600 mb-1">ลบบัญชีผู้ใช้ของคุณ</label>
-                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-end space-y-1">
-                  <button
-                    onClick={() => setShowDeleteModal(true)} // เปิด Modal เมื่อคลิกปุ่มลบ
-                    className="cursor-pointer text-xs text-red-600 hover:text-red-800 focus:outline-none"
-                  >
-                    ลบ
-                  </button>
-                </div>
-              </nav>
-            </div>
-
-            {/* Modal ยืนยันการลบบัญชี */}
-            {showDeleteModal && (
-              <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-                <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                  <h3 className="text-sm text-gray-700">คุณแน่ใจว่าต้องการลบบัญชีใช่หรือไม่?</h3>
-                  <div className="mt-4 flex justify-end space-x-4">
-                    <button
-                      onClick={() => setShowDeleteModal(false)} // ปิด Modal
-                      className="text-xs text-gray-600 hover:text-gray-800 focus:outline-none"
-                    >
-                      ยกเลิก
-                    </button>
-                    <button
-                      onClick={handleDeleteAccount} // ลบบัญชี
-                      className="text-xs text-red-600 hover:text-red-800 focus:outline-none"
-                    >
-                      ยืนยัน
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* Save Button */}
-          <section className="bg-white p-6 rounded-lg shadow">
-            <div className="text-right">
-              <button
-                type="button"
-                onClick={handleSave} // เมื่อบันทึกแล้วให้ update ชื่อจริง
-                className="w-full text-xs px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                บันทึกข้อมูล
-              </button>
-            </div>
-          </section>
         </div>
       </div>
-      <div>
-        <Footer />
-      </div>
+
+      <Footer />
     </div>
   );
-}
+};
+
+export default Profile;
