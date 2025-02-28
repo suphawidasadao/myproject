@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Sidebar from '../../components/sidebar';
+import Delete from '../Delete';
 
 export default function Carmanagement() {
 
@@ -64,7 +65,7 @@ export default function Carmanagement() {
                     <td className="p-2 text-green-600">{val.status}</td>
                     <td className="p-2 space-x-2">
                       <Link className="bg-gray-500 text-white px-2 py-1 rounded" href={`/admin/edit/${val._id}`}>Edit</Link>
-                      <Link className="bg-red-500 text-white px-2 py-1 rounded" href={`/delete/${val._id}`}>Delete</Link>
+                      <Delete id={val._id} />
                       <Link className="bg-blue-500 text-white px-2 py-1 rounded" href={`/details/${val._id}`}>Details</Link>
                     </td>
                   </tr>
