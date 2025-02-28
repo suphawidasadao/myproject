@@ -7,11 +7,8 @@ import Sidebar from '@/app/components/sidebar';
 import Image from 'next/image';
 
 function EditPostPage({ params }) {
-
     const { id } = React.use(params);
-
     const [postData, setPostData] = useState("");
-
     const [newname, setNewName] = useState("");
     const [newtype, setNewType] = useState("");
     const [newtransmission, setNewTransmission] = useState("");
@@ -22,10 +19,10 @@ function EditPostPage({ params }) {
     const [newluggage, setNewLuggage] = useState(0);
     const [newprice, setNewPrice] = useState("");
     const [newprovince, setNewProvince] = useState("");
-    const [newimages, setNewImages] = useState([]); // เก็บ URL ของรูปที่เลือก
-    const [newlocations, setNewLocations] = useState(""); // รับค่าเป็น string เช่น "BTS อโศก:100, MRT Sukhumvit:150"
-    const [newfeatures, setNewFeatures] = useState(""); // รับเป็น string เช่น "วิทยุ, ระบบกันขโมย"
-    const [newsafety, setNewSafety] = useState(""); // รับเป็น string เช่น "ABS, Airbags"
+    const [newimages, setNewImages] = useState([]); // Store new image URLs
+    const [newlocations, setNewLocations] = useState(""); 
+    const [newfeatures, setNewFeatures] = useState(""); 
+    const [newsafety, setNewSafety] = useState(""); 
 
     const router = useRouter();
 
@@ -37,80 +34,84 @@ function EditPostPage({ params }) {
             })
 
             if (!res.ok) {
-                throw new Error("Failed to fetch a post")
+                throw new Error("Failed to fetch post");
             }
 
             const data = await res.json();
-            console.log("edit post: ", data);
             setPostData(data.post);
-
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     useEffect(() => {
         if (id) {
-            getPostById(id); // Fetch the data when the component mounts
+            getPostById(id);
         }
     }, [id]);
 
+    // Handle image removal
+    const handleRemoveImage = (index, type) => {
+        if (type === "old") {
+            const updatedImages = postData.images.filter((_, i) => i !== index);
+            setPostData({ ...postData, images: updatedImages });
+        } else {
+            const updatedNewImages = newimages.filter((_, i) => i !== index);
+            setNewImages(updatedNewImages);
+        }
+    };
+
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const combinedImages = [...postData.images, ...newimages];
         try {
             const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ newname, newtype, newtransmission, newseats, newfuel, newengine, newdoors, newluggage, newprice, newprovince, newimages, newlocations, newfeatures, newsafety })
-            })
+                body: JSON.stringify({
+                    newname, newtype, newtransmission, newseats, newfuel, newengine, newdoors, newluggage,
+                    newprice, newprovince, combinedImages, newlocations, newfeatures, newsafety
+                })
+            });
 
             if (!res.ok) {
                 throw new Error("Failed to update post");
             }
 
-            router.refresh();
-            router.push("/admin/carmanagement")
+            router.push("/admin/carmanagement"); // Navigate to car management
         } catch (error) {
-
+            console.log(error);
         }
-    }
+    };
 
+    // Handle image file input
     const handleImageChange = (e) => {
         const selectedImages = Array.from(e.target.files);
-        const imageUrls = selectedImages.map((file) =>
-            URL.createObjectURL(file)
-        );
-        setNewImages(imageUrls); // เก็บภาพใหม่
+        const imageUrls = selectedImages.map((file) => URL.createObjectURL(file));
+        setNewImages(imageUrls);
     };
 
     return (
         <div className="relative bg-gray-100 min-h-screen flex">
             <Sidebar />
             <div className="p-6 w-full sm:w-4/5 md:w-3/4 mx-auto">
-                <h3 className="text-xl font-semibold mb-8 text-gray-800">
-                    Edit a New Car Rental Post
-                </h3>
+                <h3 className="text-xl font-semibold mb-8 text-gray-800">Edit a New Car Rental Post</h3>
                 <ul className="mx-auto mb-4 flex space-x-2 mt-5 text-sm text-gray-500">
                     <li>
-                        <Link href="/admin/carmanagement" className="hover:text-blue-600">
-                            Car Management
-                        </Link>
+                        <Link href="/admin/carmanagement" className="hover:text-blue-600">Car Management</Link>
                     </li>
                     <li>&gt;</li>
                     <li>
-                        <Link href="/profilepage" className="text-blue-600">
-                            Edit
-                        </Link>
+                        <Link href="/profilepage" className="text-blue-600">Edit</Link>
                     </li>
                 </ul>
                 <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-lg shadow-md">
                     <div className="flex flex-col gap-6">
-
-                        {/* ชื่อรถ */}
-                        <label className="block text-sm font-medium">ชื่อรถ</label>
+                        {/* Car Name */}
+                        <label className="block text-sm font-medium">Car Name</label>
                         <input
                             value={newname}
                             onChange={(e) => setNewName(e.target.value)}
@@ -119,40 +120,70 @@ function EditPostPage({ params }) {
                             required
                             className="w-full p-2 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-
+                        
+                        {/* Display Old Images */}
                         {postData?.images?.length > 0 && (
                             <div className="mt-4 flex gap-4 flex-wrap">
                                 {postData.images.map((image, index) => (
                                     <div key={index} className="relative">
                                         <Image
-                                            src={image}  // ใช้ URL รูปเก่าจากฐานข้อมูล
+                                            src={image}
                                             alt={`Old Car Image ${index}`}
                                             width={200}
                                             height={200}
                                             className="object-cover rounded"
                                         />
+                                        {/* Remove old image button */}
+                                        <button
+                                            className="absolute top-1 right-1 bg-gray-400 text-gray-200 hover:text-gray-500 rounded-full w-5 h-5 flex items-center justify-center"
+                                            onClick={() => handleRemoveImage(index, "old")}
+                                        >
+                                            X
+                                        </button>
                                     </div>
                                 ))}
                             </div>
                         )}
 
-                        {/* รูปใหม่ */}
+                        {/* Display New Images */}
                         {newimages.length > 0 && (
                             <div className="mt-4 flex gap-4 flex-wrap">
                                 {newimages.map((newimage, index) => (
                                     <div key={index} className="relative">
                                         <Image
-                                            src={newimage}  // ใช้ URL รูปใหม่ที่ถูกเลือก
+                                            src={newimage}
                                             alt={`New Car Image ${index}`}
                                             width={200}
                                             height={200}
                                             className="object-cover rounded"
                                         />
+                                        {/* Remove new image button */}
+                                        <button
+                                            className="absolute text-base top-1 right-1 bg-gray-400 text-gray-200 hover:text-gray-500 rounded-full w-5 h-5 flex items-center justify-center"
+                                            onClick={() => handleRemoveImage(index, "new")}
+                                        >
+                                            X
+                                        </button>
                                     </div>
                                 ))}
                             </div>
                         )}
 
+                        {/* Image Upload Input */}
+                        <label
+                            htmlFor="car-images"
+                            className="w-24 cursor-pointer text-center rounded border-2 border-gray-500 px-3 py-2 text-xs bg-gray-300 hover:bg-gray-500"
+                        >
+                            Choose File
+                        </label>
+                        <input
+                            type="file"
+                            id="car-images"
+                            multiple
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden"
+                        />
 
                         {/* ประเภทรถ */}
                         <label className="block text-sm font-medium">ประเภท</label>
@@ -306,15 +337,14 @@ function EditPostPage({ params }) {
                             required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-
                     </div>
 
-                    {/* ปุ่ม Submit */}
+                    {/* Submit Button */}
                     <button
                         type="submit"
                         className="w-full p-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                        สร้างโพสต์
+                        Update Post
                     </button>
                 </form>
             </div>
