@@ -58,7 +58,7 @@ const RentCarPage1 = () => {
             router.push(`/rent_car2?carId=${carId}&name=${name}&price=${price}&province=${province}&pickup=${pickupDateStr}&return=${returnDateStr}&firstName=${formData.firstName}&lastName=${formData.lastName}&email=${formData.email}&phone=${formData.phone}&details=${formData.details}`);
         }
     };
-    
+
 
     return (
         <div className="relative">
@@ -95,18 +95,19 @@ const RentCarPage1 = () => {
                 <button
                     type="submit"
                     onClick={handleConfirm}
-                    className={`text-xs p-2 rounded-md w-full block mx-auto ${
-                        formData.firstName && formData.lastName && formData.email && formData.phone 
-                        ? "bg-blue-500 text-white hover:bg-blue-600"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    }`}
+                    className={`text-xs p-2 rounded-md w-full block mx-auto ${formData.firstName && formData.lastName && formData.email && formData.phone
+                            ? "bg-blue-500 text-white hover:bg-blue-600"
+                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        }`}
                     disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.phone}
                 >
                     ยืนยันข้อมูล
                 </button>
             </div>
-
-            <Footer className="mt-10" />
+                        <div className="mt-20">
+                            <Footer />
+                        </div>
+            
         </div>
     );
 };

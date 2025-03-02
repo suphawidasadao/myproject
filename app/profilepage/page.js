@@ -2,7 +2,6 @@
 
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
@@ -55,16 +54,7 @@ const Profile = () => {
       <div className="container mx-auto px-24 py-4 flex gap-6">
         {/* Sidebar */}
         <aside className="w-64 sm:w-48 bg-white p-4 rounded-lg shadow text-sm">
-          <div className="flex flex-col items-center mb-6">
-            <div className="w-20 h-20 rounded-full overflow-hidden mb-3">
-              <Image
-                src="/profile3.svg"
-                alt="Profile"
-                width={80}
-                height={80}
-                className="object-cover"
-              />
-            </div>
+          <div className="flex flex-col items-center text-lg mb-6">
             <h2 className="font-semibold text-gray-800 text-center">{session?.user?.name}</h2>
           </div>
           <Link
@@ -74,7 +64,7 @@ const Profile = () => {
             จัดการบัญชีโปรไฟล์
           </Link>
           <Link
-            href="/rentals"
+            href="/RentalHistory"
             className="block py-2 px-3 text-gray-600 hover:bg-gray-100 rounded w-full"
           >
             การเช่ารถของฉัน
@@ -94,13 +84,6 @@ const Profile = () => {
             <h1 className="text-base font-semibold text-gray-800 mb-6">จัดการบัญชีโปรไฟล์</h1>
             <form className="space-y-6">
               <div className="flex items-center space-x-4 w-full">
-                <Image
-                  src="/profile3.svg"
-                  alt="Profile"
-                  width={100}
-                  height={100}
-                  className="w-24 h-24 rounded-full object-cover"
-                />
                 <div className="flex-1">
                   <label className="text-xs text-gray-600 mb-1">ชื่อแสดงบนโปรไฟล์ (30 ตัวอักษร)</label>
                   <input
