@@ -66,18 +66,17 @@ export default function CreatePostPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // แปลง locations จาก string เป็น array ของ object
-        // รูปแบบ input: "BTS อโศก:100, MRT Sukhumvit:150"
         const locationsArray = locations
             .split(",")
             .map(item => item.trim())
             .filter(item => item !== "")
             .map(item => {
                 const [place, fee] = item.split(":").map(str => str.trim());
-                return { place, fee: Number(fee) }; // ตรวจสอบให้แน่ใจว่า fee เป็น Number
+                return { place, fee: Number(fee) };
             });
-
+    
         // แปลง features และ safety จาก string เป็น array โดยใช้ comma
         const featuresArray = features
             .split(",")
@@ -87,7 +86,7 @@ export default function CreatePostPage() {
             .split(",")
             .map(item => item.trim())
             .filter(item => item !== "");
-
+    
         // ตัวอย่างข้อมูลที่จะส่ง (คุณสามารถปรับส่งไปยัง API หรือจัดการตามที่ต้องการ)
         const postData = {
             name,
@@ -104,8 +103,15 @@ export default function CreatePostPage() {
             locations: locationsArray,  // ส่งเป็น array ของ objects
             features: featuresArray,
             safety: safetyArray,
+            status: "available",
         };
-
+    
+        // Initialize FormData
+        const formData = new FormData();
+        images.forEach((image) => {
+            formData.append('images', image);  // ส่งรูปภาพเป็นไฟล์
+        });
+    
         try {
             const res = await fetch("http://localhost:3000/api/posts", {
                 method: "POST",
@@ -114,28 +120,24 @@ export default function CreatePostPage() {
                 },
                 body: JSON.stringify(postData) // ส่ง postData ทั้งหมด
             });
-
+    
             if (res.ok) {
                 router.push("/admin/carmanagement");
             } else {
                 throw new Error("Failed to create a post");
             }
-
+    
         } catch (error) {
             console.log(error);
         }
-        images.forEach((image) => {
-            formData.append('images', image);  // ส่งรูปภาพเป็นไฟล์
-        });
-
-
     };
+    
 
     return (
         <div className="relative bg-gray-100 min-h-screen flex">
             <Sidebar />
-            <div className="p-6 w-full sm:w-4/5 md:w-3/4  mx-auto">
-                <h3 className="text-xl font-semibold mb-7 text-gray-800">
+            <div className="p-1 pt-6 w-full sm:w-4/5 md:w-3/4 mx-auto">
+                <h3 className="text-lg font-bold mb-2">
                     Create a New Car Rental Post
                 </h3>
                 <ul className="mx-auto mb-4 flex space-x-2 mt-5 text-sm text-gray-500">
@@ -326,7 +328,7 @@ export default function CreatePostPage() {
                         />
 
                         {/* Locations */}
-                        <label className="block text-sm font-medium">ที่ตั้งรถ</label>
+                        <label className="block text-sm font-medium">พื้นที่รับส่ง</label>
                         <input
                             value={locations}
                             onChange={(e) => setLocations(e.target.value)}
@@ -343,7 +345,6 @@ export default function CreatePostPage() {
                             onChange={(e) => setFeatures(e.target.value)}
                             type="text"
                             placeholder="ระบุคุณสมบัติ (เช่น วิทยุ, ระบบกันขโมย)"
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -354,7 +355,6 @@ export default function CreatePostPage() {
                             onChange={(e) => setSafety(e.target.value)}
                             type="text"
                             placeholder="ระบุระบบความปลอดภัย (เช่น ABS, Airbags)"
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
