@@ -60,7 +60,7 @@ const RentCarPage2 = () => {
             lastname: lastName,
             email: email,
             phone: phone,
-            additionalInfo: "รายละเอียดเพิ่มเติม", // สามารถกรอกได้ในฟอร์ม
+            additionalInfo: "", // สามารถกรอกได้ในฟอร์ม
             startDate: pickupDateStr,
             endDate: returnDateStr,
             location: province,
@@ -197,7 +197,7 @@ const RentCarPage2 = () => {
                             <div className="bg-white p-12 rounded-lg shadow-2xl transform scale-110 transition-all duration-500 relative">
                                 <p className="text-xl items-center flex justify-center font-semibold text-gray-700 mb-4">รออนุมัติ</p>
 
-                                <Link href="/rentals">
+                                <Link href="/RentalHistory">
                                     <button className="bg-blue-500 text-white w-full px-6 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-600 transition text-xs">
                                         การเช่ารถของฉัน
                                     </button>
@@ -208,7 +208,7 @@ const RentCarPage2 = () => {
                 </div>
             </div>
 
-            <Footer className="mt-10" />
+            <Footer/>
         </div>
     );
 };
