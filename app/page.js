@@ -35,7 +35,7 @@ export default function Home() {
             service: "บริษัทรถเช่าที่ให้บริการ",
             smallCarPrice: 799,
             bigCarPrice: 959,
-            image: "https://lh3.googleusercontent.com/gps-cs-s/APrbqlV8SstPsochwKVjCgs8invHkM0EkoZ38FGeR8Pl7SdPEWAmPc4ZSW_0XINySCvYjiNEIqK_V1LTXrcx0qXeqXTr32YCijwCB4y7o4qyOXLnQemvGXY5tYmZ4d3ze58uXt4ISKw=w675-h390-n-k-no",
+            image: "https://travel.mthai.com/app/uploads/2018/09/udonthani-1.jpg",
         },
         {
             location: "เชียงใหม่",
@@ -332,29 +332,6 @@ export default function Home() {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </div>
-
-            <div className='bg-blue-100'>
-                <div className="container mx-auto px-24 pt-6">
-                    <h1 className="text-xl font-bold text-gray-800 mb-2">
-                        ตรวจสอบการจองของคุณ
-                    </h1>
-                    <div className="flex items-center space-x-4 pt-4">
-                        <input
-                            type="text"
-                            placeholder="* กรอกหมายเลขการจอง"
-                            className="border border-gray-300 rounded mb-6 px-3 py-2 text-gray-700 focus:outline-none text-[12px] w-80"
-                        />
-                        <input
-                            type="text"
-                            placeholder="* กรอกนามสกุล"
-                            className="border border-gray-300 rounded mb-6 px-3 py-2 text-gray-700 focus:outline-none text-[12px] w-80"
-                        />
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-12 mb-6 rounded text-sm">
-                            ตรวจสอบ
-                        </button>
                     </div>
                 </div>
             </div>
