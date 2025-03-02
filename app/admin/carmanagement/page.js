@@ -85,7 +85,7 @@ export default function Carmanagement() {
 
                         </table>
                     ) : (
-                        <p className="bg-gray-300 p-3 my-3 text-center">No cars available.</p>
+                        <p className="bg-gray-300 p-3 my-3 text-center"></p>
                     )}
                 </div>
             </div>
