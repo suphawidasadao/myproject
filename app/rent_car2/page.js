@@ -97,19 +97,25 @@ const RentCarPage2 = () => {
             <div className="container mx-auto px-24 mt-4 flex gap-4">
                 {/* ✅ ส่วนสรุปการจอง */}
                 <div className="bg-white p-4 rounded-lg shadow-md w-[262px]">
-                    <h2 className="text-base font-bold mb-4 text-gray-800">สรุปทริปการเดินทาง</h2>
-                    <div className="flex items-center mb-4">
-                        <img
-                            src={carData.images[0] || "/placeholder-car.jpg"}
-                            alt={carData.name}
-                            className="w-32 h-26 rounded-md"
-                        />
-                        <div className="ml-4">
-                            <h3 className="text-sm font-medium">{carData.name}</h3>
-                            <p className="text-xs text-gray-600">{carData.transmission}</p>
-                        </div>
+                <span className="text-sm"><strong>ชื่อรถ:</strong> {name}</span>
+                    <div className="flex items-center mb-4 mt-2">
+                        {carData && carData.images && carData.images[0] ? (
+                            <img
+                                src={carData.images[0]}  // แสดงรูปภาพจากข้อมูล carData
+                                alt={carData.name}
+                                className="w-32 h-26 rounded-md"
+                            />
+                        ) : (
+                            <img
+                                src="/placeholder-car.jpg"  // ใช้ placeholder หากไม่มีภาพ
+                                alt="Placeholder Car"
+                                className="w-32 h-26 rounded-md"
+                            />
+                        )}
+                        
                     </div>
-                    <p className="text-sm text-gray-600">จังหวัด: {province}</p>
+                    <span className="text-sm"><strong>จังหวัด:</strong> {province}</span>
+                    <br/><span className="text-sm"><strong>ราคา:</strong> ฿{price} / วัน</span>
                 </div>
 
                 {/* ✅ ส่วนสรุปรายละเอียดการจอง */}

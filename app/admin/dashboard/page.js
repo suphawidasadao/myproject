@@ -2,15 +2,15 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import Sidebar from '../../components/sidebar';
+import Sidebar from "@/app/components/sidebar";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [summary, setSummary] = useState(null);
 
-  // ตรวจสอบ session และ role ของผู้ใช้
   useEffect(() => {
     if (status === "loading") return;
     if (!session || session.user.role !== "admin") {
@@ -18,60 +18,67 @@ export default function DashboardPage() {
     }
   }, [session, status, router]);
 
+  // ดึงข้อมูลจาก API
+  useEffect(() => {
+    async function fetchData() {
+        try {
+            const summaryRes = await fetch("/api/bookings/summary");
+            
+            // ตรวจสอบว่า response ตอบกลับเป็น JSON หรือไม่
+            if (!summaryRes.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const summaryData = await summaryRes.json();
+            
+            // ตรวจสอบข้อมูลที่ได้รับ
+            console.log("Summary Data:", summaryData);
+            
+            setSummary(summaryData);  // ตั้งค่าข้อมูล summary
+        } catch (error) {
+            console.error("Error fetching summary data:", error);
+        }
+    }
+
+    fetchData();
+}, []);
+
+
   if (status === "loading" || !session || session.user.role !== "admin") {
     return null;
   }
-
-  // ข้อมูลสำหรับ Bar Chart
-  const chartData = [
-    { month: "FEB", bookings: 30 },
-    { month: "MAR", bookings: 40 },
-    { month: "APR", bookings: 50 },
-  ];
 
   return (
     <div className="flex w-screen h-auto min-h-[600px]">
       <Sidebar />
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col bg-gray-100 p-6">
-        {/* Header */}
         <header className="bg-white p-4 shadow rounded-md">
           <h1 className="text-xl font-bold mb-2">Admin Dashboard</h1>
           <p className="text-base">Welcome, {session.user.name}!</p>
         </header>
 
-        {/* Cards สรุปข้อมูล */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-          <div className="p-6 bg-white shadow rounded-md text-center">
-            <p className="text-base font-semibold">Total Cars</p>
-            <h3 className="text-xl font-bold">50</h3>
+        {summary && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            <div className="p-6 bg-white shadow rounded-md text-center">
+              <p>Total Cars</p>
+              <h3>{summary.totalCars}</h3>
+            </div>
+            <div className="p-6 bg-white shadow rounded-md text-center">
+              <p>Bookings Today</p>
+              <h3>{summary.bookingsToday}</h3>
+            </div>
+            <div className="p-6 bg-white shadow rounded-md text-center">
+              <p>Bookings This Month</p>
+              <h3>{summary.bookingsThisMonth}</h3>
+            </div>
+            <div className="p-6 bg-white shadow rounded-md text-center">
+              <p>Total Users</p>
+              <h3>{summary.totalUsers}</h3>
+            </div>
           </div>
-          <div className="p-6 bg-white shadow rounded-md text-center">
-            <p className="text-base font-semibold">Bookings Today</p>
-            <h3 className="text-xl font-bold">10</h3>
-          </div>
-          <div className="p-6 bg-white shadow rounded-md text-center">
-            <p className="text-base font-semibold">Bookings This Month</p>
-            <h3 className="text-xl font-bold">120</h3>
-          </div>
-          <div className="p-6 bg-white shadow rounded-md text-center">
-            <p className="text-base font-semibold">Total Users</p>
-            <h3 className="text-xl font-bold">150</h3>
-          </div>
-        </div>
+        )}
 
-        {/* Bar Chart */}
-        <div className="bg-white shadow rounded-md p-4 mt-4 text-left">
-          <h3 className="text-lg font-bold mb-2">Bookings (Last 3 Months)</h3>
-          <ResponsiveContainer width="90%" height={300} className="ml-0">
-            <BarChart data={chartData} margin={{ left: 0, right: 300 }}>
-              <XAxis dataKey="month" tick={{ fontSize: 10 }} />
-              <YAxis tick={{ fontSize: 10 }} />
-              <Bar dataKey="bookings" fill="#3B82F6" barSize={50} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
       </div>
     </div>
   );

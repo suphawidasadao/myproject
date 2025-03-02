@@ -88,7 +88,6 @@ export default function RentalHistory() {
     </div>
   ))
 )}
-
                 </div>
             </div>
             <Footer />
