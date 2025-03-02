@@ -30,6 +30,7 @@ const authOptions = {
                         name: user.name,
                         firstname: user.firstname,
                         lastname: user.lastname,
+                        phone: user.phone,
                         email: user.email,
                         role: user.role,
                     };
@@ -56,6 +57,7 @@ const authOptions = {
                     name: user.name,
                     firstname: user.firstname,
                     lastname: user.lastname,
+                    phone: user.phone,
                     email: user.email,
                     role: user.role,
                 };
@@ -71,6 +73,7 @@ const authOptions = {
                     name: token.name,
                     firstname: token.firstname,
                     lastname: token.lastname,
+                    phone: token.phone,
                     email: token.email,
                     role: token.role,
                 }

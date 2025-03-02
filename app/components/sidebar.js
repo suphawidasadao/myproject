@@ -14,7 +14,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="w-64 bg-blue-700 text-white p-6 flex flex-col justify-between min-h-screen">
+    <div className="w-56 bg-blue-700 text-white p-6 flex flex-col justify-between min-h-screen">
       <div>
         <h2 className="text-2xl font-bold">MyCarRent</h2>
         <nav className="space-y-2 mt-4">

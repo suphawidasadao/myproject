@@ -5,27 +5,37 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req) {
     try {
-        const { firstname, lastname, name, email, password, phone } = await req.json();  // เพิ่ม phone
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const { firstname, lastname, name, email, password, phone } = await req.json();
+        console.log("📦 Received Data:", { firstname, lastname, name, email, phone });
 
+        // ตรวจสอบว่าค่าที่รับมาเป็น String ทั้งหมดหรือไม่
+        if (typeof name !== "string") {
+            throw new Error(`❌ name ต้องเป็น String แต่ได้ค่า: ${typeof name}`);
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
         await connectMongoDB();
 
-        const isAdminEmail = email === "admin@gmail.com";
-
-        await User.create({
+        const newUser = new User({
             firstname,
             lastname,
             name,
             email,
+            phone,
             password: hashedPassword,
-            phone: phone || "",  // ถ้า phone ไม่มีค่า ให้ใส่เป็น ""
-            role: isAdminEmail ? "admin" : "user",
+            role: email === "admin@gmail.com" ? "admin" : "user"
         });
 
+        console.log("✅ Saving User:", newUser);
+
+        await newUser.save();
+
         return NextResponse.json({ message: "User registered." }, { status: 201 });
+
     } catch (error) {
+        console.error("❌ Registration Error:", error);
         return NextResponse.json(
-            { message: "An error occurred while registering the user." },
+            { message: "เกิดข้อผิดพลาดในการลงทะเบียน", error: error.message },
             { status: 500 }
         );
     }

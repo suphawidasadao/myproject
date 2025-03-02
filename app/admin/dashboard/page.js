@@ -14,7 +14,7 @@ export default function DashboardPage() {
   useEffect(() => {
     if (status === "loading") return;
     if (!session || session.user.role !== "admin") {
-      router.replace("/login");
+      router.replace("/loginpage");
     }
   }, [session, status, router]);
 

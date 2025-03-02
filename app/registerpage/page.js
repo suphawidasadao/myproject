@@ -10,6 +10,7 @@ export default function RegisterPage() {
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [name, setName] = useState("");
+    const [phone, setPhone] = useState("66+");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,7 +34,7 @@ export default function RegisterPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!firstname || !lastname || !name || !email || !password || !confirmPassword) {
+        if (!firstname || !lastname || !name || !phone || !email || !password || !confirmPassword) {
             setError("Please complete all inputs.");
             return;
         }
@@ -66,7 +67,7 @@ export default function RegisterPage() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    firstname, lastname, name, email, password
+                    firstname, lastname, phone, name, email, password
                 })
             });
 
@@ -141,6 +142,12 @@ export default function RegisterPage() {
                                         onChange={(e) => setName(e.target.value)}
                                         type="text"
                                         placeholder="ชื่อแสดงบนโปรไฟล์"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
+                                    />
+                                    <input
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        type="text"
+                                        placeholder="เบอร์โทร"
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
                                     />
                                     <input

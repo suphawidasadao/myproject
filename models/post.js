@@ -14,7 +14,11 @@ const postSchema = new Schema({
     images: [String],  // Array of image URLs
     locations: [{ place: String, fee: Number }],  // Array of objects with place and fee
     features: [String],
-    safety: [String]
+    safety: [String],
+    status: { 
+        type: String, 
+        default: 'available'  // Set default status to 'available'
+    }
 });
 
 

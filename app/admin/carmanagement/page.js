@@ -1,84 +1,94 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Sidebar from '../../components/sidebar';
-import Delete from '../Delete';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Sidebar from "../../components/sidebar";
+import Delete from "../Delete";
 
 export default function Carmanagement() {
+    const [postData, setPostData] = useState([]);
 
-  const [postData, setPostData] = useState([]);
+    const getPosts = async () => {
+        try {
+            console.log("📡 กำลังโหลดข้อมูลรถจาก API...");
+            const res = await fetch("/api/cars", {
+                method: "GET",
+                cache: "no-store",
+            });
 
-  console.log(postData);
+            if (!res.ok) {
+                throw new Error("Failed to fetch posts");
+            }
 
-  const getPosts = async () => {
-    try {
-      const res = await fetch("http://localhost:3000/api/posts", {
-        method: "GET",
-        cache: "no-store"
-      })
+            const data = await res.json();
+            console.log("📦 ข้อมูลที่ได้รับ:", data);
+            setPostData(data.posts || []);
+        } catch (error) {
+            console.log("❌ Error loading posts: ", error);
+        }
+    };
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch posts")
-      }
+    useEffect(() => {
+        getPosts();
+    }, []);
 
-      const data = await res.json();
-      setPostData(data.posts);
+    return (
+        <div className="relative bg-gray-100 min-h-screen flex">
+            <Sidebar />
+            <div className="flex-1 p-6">
+                <header className="bg-white p-4 shadow rounded-md">
+                    <h1 className="text-xl font-bold mb-2">Car Management</h1>
+                    <p className="text-base">Manage the cars available for rent</p>
+                </header>
 
-    } catch (error) {
-      console.log("Error loading posts: ", error);
-    }
-  }
+                <button className="bg-blue-500 text-white text-sm px-3 py-2 rounded my-4 hover:bg-blue-600">
+                    <Link href="/admin/create">Add New Car</Link>
+                </button>
 
-  useEffect(() => {
-    getPosts();
-  }, []);
+                <div className="bg-white p-4 rounded-lg shadow-md">
+                    {postData.length > 0 ? (
+                        <table className="w-full border-collapse">
+                            <thead>
+                                <tr className="bg-blue-500 text-white">
+                                    <th className="p-2 text-left font-medium">Car Name</th>
+                                    <th className="p-2 text-left font-medium">Type</th>
+                                    <th className="p-2 text-left font-medium">Price/Day</th>
+                                    <th className="p-2 text-left font-medium">Status</th>
+                                    <th className="p-2 text-left font-medium">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {postData.map((val) => (
+                                    <tr key={val._id} className="border-t">
+                                        <td className="p-2 text-sm">{val.name}</td>
+                                        <td className="p-2 text-sm">{val.type}</td>
+                                        <td className="p-2 text-sm">{val.price} ฿</td>
+                                        <td className="p-2 text-sm">
+                                            {val.status === "Available" ? (
+                                                <span className="text-green-600">Available</span>
+                                            ) : (
+                                                <span className="text-red-600">Booked</span>
+                                            )}
+                                        </td>
+                                        <td className="p-2 space-x-2 text-xs">
+                                            <Link className="bg-gray-500 text-white px-2 py-1 rounded" href={`/admin/edit/${val._id}`}>
+                                                Edit
+                                            </Link>
+                                            <Delete id={val._id} />
+                                            <Link className="bg-blue-500 text-white px-2 py-1 rounded" href={`/admin/details/${val._id}`}>
+                                                Details
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
 
-  return (
-    <div className="relative bg-gray-100 min-h-screen flex">
-      <Sidebar />
-
-      <div className="flex-1 p-6">
-        <h2 className="text-sm font-bold mb-2">Car Management</h2>
-        <p className="text-gray-600 mb-4">Manage the cars available for rent</p>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4 hover:bg-blue-600">
-          <Link href="/admin/create">Add New Car</Link>
-        </button>
-        <div className="bg-white p-4 rounded-lg shadow-md">
-        {postData && postData.length > 0 ? (
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-blue-500 text-white">
-                  <th className="p-2 text-left">Car Name</th>
-                  <th className="p-2 text-left">Type</th>
-                  <th className="p-2 text-left">Price/Day</th>
-                  <th className="p-2 text-left">Status</th>
-                  <th className="p-2 text-left">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {postData.map(val => (
-                  <tr key={val._id} className="border-t">
-                    <td className="p-2">{val.name}</td>
-                    <td className="p-2">{val.type}</td>
-                    <td className="p-2">{val.price} ฿</td>
-                    <td className="p-2 text-green-600">{val.status}</td>
-                    <td className="p-2 space-x-2">
-                      <Link className="bg-gray-500 text-white px-2 py-1 rounded" href={`/admin/edit/${val._id}`}>Edit</Link>
-                      <Delete id={val._id} />
-                      <Link className="bg-blue-500 text-white px-2 py-1 rounded" href={`/details/${val._id}`}>Details</Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className='bg-gray-300 p-3 my-3'>
-              You do not have any cars yet.
-            </p>
-          )}
+                        </table>
+                    ) : (
+                        <p className="bg-gray-300 p-3 my-3 text-center">No cars available.</p>
+                    )}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
