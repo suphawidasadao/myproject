@@ -105,7 +105,7 @@ function EditPostPage({ params }) {
                     </li>
                     <li>&gt;</li>
                     <li>
-                        <Link href="/profilepage" className="text-blue-600">Edit</Link>
+                        <Link href="/edit" className="text-blue-600">Edit</Link>
                     </li>
                 </ul>
                 <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-lg shadow-md">
@@ -117,7 +117,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewName(e.target.value)}
                             type="text"
                             placeholder={postData.name}
-                            required
                             className="w-full p-2 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         
@@ -190,7 +189,6 @@ function EditPostPage({ params }) {
                         <select
                             value={newtype || postData.type}
                             onChange={(e) => setNewType(e.target.value)}
-                            required
                             className="w-full p-2 border rounded text-xs"
                         >
                             <option value="">-- เลือกประเภทรถ --</option>
@@ -205,7 +203,6 @@ function EditPostPage({ params }) {
                         <select
                             value={newtransmission || postData.transmission}
                             onChange={(e) => setNewTransmission(e.target.value)}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="" disabled>
@@ -222,7 +219,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewSeats(Number(e.target.value))}
                             type="number"
                             placeholder={postData.seats}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -231,7 +227,6 @@ function EditPostPage({ params }) {
                         <select
                             value={newfuel || postData.fuel}
                             onChange={(e) => setNewFuel(e.target.value)}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="">-- เลือกประเภทเชื้อเพลิง --</option>
@@ -251,7 +246,6 @@ function EditPostPage({ params }) {
                                 inputMode="numeric"
                                 pattern="[0-9]*"
                                 placeholder={postData.engine}
-                                required
                                 className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12 appearance-none"
                             />
                             <span className="absolute inset-y-0 right-2 flex items-center text-gray-500 text-xs">
@@ -266,7 +260,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewDoors(Number(e.target.value))}
                             type="number"
                             placeholder={postData?.doors || 0}  // ใช้ค่า default 0 หากไม่มี
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -277,7 +270,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewLuggage(Number(e.target.value))}
                             type="number"
                             placeholder={postData?.luggage || 0}  // ใช้ค่า default 0 หากไม่มี
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -288,7 +280,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewProvince(e.target.value)}
                             type="text"
                             placeholder={postData.province}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -299,12 +290,11 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewPrice(Number(e.target.value))}
                             type="number"
                             placeholder={postData.price}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
                         {/* Locations */}
-                        <label className="block text-sm font-medium">ที่ตั้งรถ</label>
+                        <label className="block text-sm font-medium">พื้นที่รับส่ง</label>
                         <input
                             value={newlocations}
                             onChange={(e) => setNewLocations(e.target.value)}
@@ -312,7 +302,6 @@ function EditPostPage({ params }) {
                             placeholder={Array.isArray(postData.locations)
                                 ? postData.locations.map(location => location.place).join(", ")  // ดึงแค่ชื่อสถานที่
                                 : postData.locations || 'กรุณากรอกที่ตั้งรถ'}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -323,7 +312,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewFeatures(e.target.value)}
                             type="text"
                             placeholder={postData.features}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
 
@@ -334,7 +322,6 @@ function EditPostPage({ params }) {
                             onChange={(e) => setNewSafety(e.target.value)}
                             type="text"
                             placeholder={postData.safety}
-                            required
                             className="w-full p-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
