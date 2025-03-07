@@ -1,8 +1,8 @@
 "use client";
-
-import { useSearchParams, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 
@@ -97,7 +97,6 @@ const RentCarPage1 = () => {
                                 className="w-32 h-26 rounded-md"
                             />
                         )}
-                        
                     </div>
                     <span className="text-sm"><strong>จังหวัด:</strong> {province}</span>
                     <br/><span className="text-sm"><strong>ราคา:</strong> ฿{price} / วัน</span>
@@ -142,4 +141,10 @@ const RentCarPage1 = () => {
     );
 };
 
-export default RentCarPage1;
+export default function RentCarPage1Wrapper() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <RentCarPage1 />
+        </Suspense>
+    );
+}
