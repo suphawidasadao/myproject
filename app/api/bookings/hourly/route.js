@@ -1,7 +1,8 @@
 import { connectMongoDB } from "@/lib/mongodb";
 import Booking from "@/models/booking";
+import { NextResponse } from "next/server";  // นำเข้า NextResponse
 
-export async function GET(req, res) {
+export async function GET(req) {  // ไม่จำเป็นต้องใช้ `res` หากใช้ NextResponse
     await connectMongoDB();
 
     try {
@@ -18,9 +19,11 @@ export async function GET(req, res) {
             }
         ]);
 
-        return res.status(200).json(hourlyBookings);
+        // ใช้ NextResponse เพื่อคืนค่าผลลัพธ์
+        return NextResponse.json(hourlyBookings);  // คืนค่า JSON ของผลลัพธ์
     } catch (error) {
         console.error("Error fetching hourly bookings:", error);
-        return res.status(500).json({ error: "Error fetching hourly bookings" });
+        // คืนค่า error response หากเกิดข้อผิดพลาด
+        return NextResponse.json({ error: "Error fetching hourly bookings" }, { status: 500 });
     }
 }

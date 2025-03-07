@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import { Suspense } from 'react';
 import React, { useState, useEffect } from "react";
 import Navbar from './components/navbar';
 import Search from './components/search';
@@ -147,6 +148,7 @@ export default function Home() {
 
 
     return (
+        <Suspense fallback={<div>Loading...</div>}>
         <div className="relative">
             <div>
                 <Navbar session={session}/>
@@ -339,6 +341,7 @@ export default function Home() {
                 <Footer />
             </div>
         </div>
+        </Suspense>
 
     );
 }

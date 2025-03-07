@@ -1,11 +1,12 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import Link from "next/link";
 
+// Component to handle fetching car data and booking details
 const RentCarPage2 = () => {
     const searchParams = useSearchParams();
     const [isBooked, setIsBooked] = useState(false);
@@ -80,6 +81,7 @@ const RentCarPage2 = () => {
             console.error("❌ Error:", error);
         }
     };
+
     const totalPrice = price * days;
 
     return (
@@ -194,9 +196,16 @@ const RentCarPage2 = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
     );
 };
 
-export default RentCarPage2;
+// Wrap your RentCarPage2 component in Suspense boundary
+const RentCarPage2WithSuspense = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <RentCarPage2 />
+  </Suspense>
+);
+
+export default RentCarPage2WithSuspense;
