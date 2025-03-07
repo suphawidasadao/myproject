@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
@@ -82,9 +80,6 @@ const RentCarPage2 = () => {
             console.error("❌ Error:", error);
         }
     };
-
-    if (!carData) return <p className="text-center text-gray-500">กำลังโหลดข้อมูลรถ...</p>;
-
     const totalPrice = price * days;
 
     return (
