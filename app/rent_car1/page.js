@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import { Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -85,17 +86,22 @@ const RentCarPage1 = () => {
                     <span className="text-sm"><strong>ชื่อรถ:</strong> {name}</span>
                     <div className="flex items-center mb-4 mt-2">
                         {carData && carData.images && carData.images[0] ? (
-                            <img
-                                src={carData.images[0]}  // แสดงรูปภาพจากข้อมูล carData
-                                alt={carData.name}
-                                className="w-32 h-26 rounded-md"
-                            />
+                            <Image
+                            src={carData.images[0]}
+                            alt={carData.name}
+                            width={128} 
+                            height={104}
+                            className="rounded-md"
+                          />
                         ) : (
-                            <img
-                                src="/placeholder-car.jpg"  // ใช้ placeholder หากไม่มีภาพ
-                                alt="Placeholder Car"
-                                className="w-32 h-26 rounded-md"
-                            />
+                          <Image
+                            src="/placeholder-car.jpg"
+                            alt="Placeholder Car"
+                            width={128}
+                            height={104}
+                            className="rounded-md"
+                          />
+                        
                         )}
                     </div>
                     <span className="text-sm"><strong>จังหวัด:</strong> {province}</span>
@@ -117,7 +123,7 @@ const RentCarPage1 = () => {
             </div>
 
             {/* ปุ่มยืนยัน */}
-            <div className="bg-white border p-4 rounded-md shadow-md mt-4 w-[555px] mx-[465px]">
+            <div className="bg-white border p-4 rounded-md shadow-md mt-4 w-[1018px] ml-[410px]">
                 <p className="text-center text-black mb-4 text-xs">
                     กรุณาตรวจสอบข้อมูลการเช่าให้ครบถ้วนก่อนการกดยืนยัน
                 </p>
@@ -134,7 +140,7 @@ const RentCarPage1 = () => {
                 </button>
             </div>
 
-            <div className="mt-20">
+            <div className="mt-32">
                 <Footer />
             </div>
         </div>
