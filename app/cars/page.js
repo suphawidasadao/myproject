@@ -44,22 +44,24 @@ const SearchResultPage = () => {
                 </h1>
 
                 {cars.length > 0 ? (
-                    <div className="flex flex-col space-y-6">
+                    <div className="flex flex-col space-y-6 mx-48">
                         {cars.map((car) => (
-                            <div key={car._id} className="bg-gray-200 w-screen h-auto py-5">
-                                <div className="container mx-auto px-24">
+                            <div key={car._id} className="bg-gray-200 w-[1150px] h-auto py-5">
+                                <div className="container mx-auto px-14">
                                     <div className="bg-white rounded-md shadow-sm overflow-hidden border p-3 flex flex-col md:flex-row">
                                         {/* ✅ รูปภาพ */}
-                                        <div className="w-full md:w-1/3">
-                                            <img
-                                                src={car.images[0] || "/placeholder-car.jpg"} // ✅ ใช้รูปจาก API
+                                        <div className="relative w-full md:w-1/5 h-32 md:h-48 rounded-md overflow-hidden">
+                                            <Image
+                                                src={car.images[0] || "/placeholder-car.jpg"}
                                                 alt={car.name}
-                                                className="w-full h-28 md:h-40 object-cover rounded-md"
-                                            />
+                                                width={400} 
+                                                height={160}   
+                                                className=" object-cover rounded-md"
+/>
                                         </div>
 
                                         {/* ✅ รายละเอียดรถ */}
-                                        <div className="w-full md:w-2/3 pl-0 md:pl-5 flex flex-col justify-between mt-2 md:mt-0">
+                                        <div className="w-full md:w-3/4 pl-0 md:pl-5 flex flex-col justify-between mt-2 md:mt-0">
                                             <div>
                                                 <h2 className="text-sm font-semibold text-gray-800">{car.name}</h2>
                                                 <p className="text-xs text-gray-600 mt-1">
