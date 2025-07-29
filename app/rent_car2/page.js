@@ -1,5 +1,5 @@
 "use client";
-
+import Image from 'next/image';
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 import Navbar from "../components/navbar";
@@ -31,14 +31,14 @@ const RentCarPage2 = () => {
     useEffect(() => {
         if (pickupDate && returnDate) {
             const diffTime = returnDate - pickupDate;
-            const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24)); 
+            const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
             setDays(diffDays);
         }
     }, [pickupDate, returnDate]);
 
     useEffect(() => {
         if (!carId) return;
-        
+
         fetch(`/api/cars/${carId}`)
             .then(res => res.json())
             .then(data => {
@@ -63,14 +63,14 @@ const RentCarPage2 = () => {
             totalPrice: totalPrice + 3000,
             status: "pending"
         };
-    
+
         try {
             const response = await fetch("/api/booking", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(bookingData)
             });
-    
+
             if (response.ok) {
                 setIsBooked(true);
                 setHasBooked(true);
@@ -93,21 +93,26 @@ const RentCarPage2 = () => {
                     <span className="text-sm"><strong>ชื่อรถ:</strong> {name}</span>
                     <div className="flex items-center mb-4 mt-2">
                         {carData && carData.images && carData.images[0] ? (
-                            <img
-                                src={carData.images[0]} 
-                                alt={carData.name}
-                                className="w-32 h-26 rounded-md"
-                            />
+                            <Image
+                            src={carData.images[0]}
+                            alt={carData.name}
+                            width={128} 
+                            height={104}
+                            className="rounded-md"
+                          />
                         ) : (
-                            <img
-                                src="/placeholder-car.jpg" 
-                                alt="Placeholder Car"
-                                className="w-32 h-26 rounded-md"
-                            />
+                          <Image
+                            src="/placeholder-car.jpg"
+                            alt="Placeholder Car"
+                            width={128}
+                            height={104}
+                            className="rounded-md"
+                          />
+                        
                         )}
                     </div>
                     <span className="text-sm"><strong>จังหวัด:</strong> {province}</span>
-                    <br/><span className="text-sm"><strong>ราคา:</strong> ฿{price} / วัน</span>
+                    <br /><span className="text-sm"><strong>ราคา:</strong> ฿{price} / วัน</span>
                 </div>
 
                 <div className="bg-white px-6 rounded-lg shadow-lg w-full mx-auto flex-1 h-[610px]">
@@ -125,7 +130,7 @@ const RentCarPage2 = () => {
 
                     <div className="mb-4 text-sm">
                         <p className="text-sm font-semibold">ค่ารับ - ค่าส่ง</p>
-                        {carData.locations?.length > 0 ? (
+                        {carData && carData.locations && carData.locations.length > 0 ? (
                             <ul className="ml-4 text-gray-600 text-sm mt-2">
                                 {carData.locations.map((loc, index) => (
                                     <li key={index} className="flex justify-between">
@@ -139,6 +144,7 @@ const RentCarPage2 = () => {
                         ) : (
                             <p className="text-green-500 font-semibold mt-2">ฟรี</p>
                         )}
+
                     </div>
 
                     <hr className="border-gray-300 my-4" />
@@ -196,16 +202,18 @@ const RentCarPage2 = () => {
                 </div>
             </div>
 
-            <Footer />
+            <div className="mt-20">
+                            <Footer />
+                        </div>
         </div>
     );
 };
 
 // Wrap your RentCarPage2 component in Suspense boundary
 const RentCarPage2WithSuspense = () => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <RentCarPage2 />
-  </Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
+        <RentCarPage2 />
+    </Suspense>
 );
 
 export default RentCarPage2WithSuspense;
