@@ -88,7 +88,7 @@ export default function Navbar() {
                                 </a>
                                 {isUserDropdownOpen && (
                                     <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-48 p-4 z-50">
-                                        <button onClick={() => router.push('/my-bookings')} className="w-full text-black hover:text-blue-700 py-2 px-4 rounded-md hover:bg-blue-100 transition">
+                                        <button onClick={() => router.push('/RentalHistory')} className="w-full text-black hover:text-blue-700 py-2 px-4 rounded-md hover:bg-blue-100 transition">
                                             การจองของฉัน
                                         </button>
                                         <button onClick={() => router.push('/profilepage')} className="w-full text-black hover:text-blue-700 py-2 px-4 rounded-md hover:bg-blue-100 transition">
